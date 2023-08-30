@@ -1,0 +1,1689 @@
+@font-face {
+    font-family: dunkinsansBook;
+    src: url(https://www.dunkindonuts.com/etc/designs/dd/fonts/dunkinsans/Web/DunkinSans-Book.woff);
+    font-weight: Book;
+ }
+
+ @font-face {
+    font-family: dunkinsans;
+    src: url(https://www.dunkindonuts.com/etc/designs/dd/fonts/dunkinsans/Web/DunkinSans-Display.woff);
+    font-weight: Display;
+ }
+ /* SFCB-334 */
+ div#auraErrorMessage{
+    display: none !important;
+ }
+
+ #nfchatuicontainer{
+     position: absolute;
+     z-index: 1000;
+ }
+
+
+ /*Chat body*/
+ .chatBody[nfchatui-chatBody_chatBody] {
+     display: flex;
+     flex-direction: column;
+     height: auto !important;
+     min-height: 100% !important;
+     background-color: #f4f4f4;
+ }
+ .nfChatComponent[nfchatui-chatWindow_chatWindow] {
+     box-shadow: 0px 0px 12px 0px rgba(0,0,0, 0.25) !important;
+     max-height: 600px !important;
+     height: 90% !important;
+     z-index: 9999 !important;
+     /*width: 320px;*/
+ }
+
+ .chat-content.standard.agent.custom[nfchatui-chatMsgComponent_chatMsgComponent] {
+     box-shadow: 0px 0px 12px 0px rgba(0,0,0, 0.15) !important;
+ }
+
+ /*Chat started message*/
+ .slds-scope {
+     color: #000000 !important;
+ }
+
+ /*Chatbot name*/
+ .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .closeIcon[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .header[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .minimizeIcon[nfchatui-chatHeader_chatHeader] {
+     display: inline;
+     font-family: dunkinsans !important;
+     font-size: 14px !important;
+     padding: 5px !important;
+ }
+
+ .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .closeIcon[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .minimizeIcon[nfchatui-chatHeader_chatHeader] {
+        width: 22px;
+        height: 22px;
+        display: flex !important;
+        margin-top: 5px !important;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+
+ /*final close button*/
+ .chatFooter.theme-stockx[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter] {
+     font-family: DunkinSans;
+     font-size: 16px;
+     color: #FFFFFF !important;
+     border-radius: 30px;
+     background-color: #E60073 !important;
+ }
+
+ /*chat text*/
+ .slds-scope .slds-rich-text-editor__textarea, .slds-scope .slds-rich-text-editor__output {
+     line-height: 1.5;
+     overflow-wrap: break-word;
+     word-wrap: break-word;
+     -webkit-hyphens: manual;
+     -ms-hyphens: manual;
+     hyphens: manual;
+     font-family: dunkinsansBook;
+     font-size: 14px;
+ }
+
+ /*TODO Header fonts*/
+ .slds-scope .slds-align_absolute-center, .slds-scope .slds-align--absolute-center.content {
+     display: flex;
+     justify-content: center;
+     align-content: center;
+     align-items: center;
+     margin: auto;
+ }
+
+ /*headr*/
+ .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .updown[nfchatui-chatHeader_chatHeader] img[nfchatui-chatHeader_chatHeader] {
+     width: 8px;
+     height: 8px;
+     cursor: pointer;
+     margin: 8 5px !important;
+     fill: #fff!important;
+ }
+
+
+ /*Menu buttons*/
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies[nfchatui-chatMsgComponent_chatMsgComponent]{
+    width: 80% !important;
+    margin-left: 14% !important;
+ }
+ .chat-content.menu.custom[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled):hover[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies.custom[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled):hover[nfchatui-chatMsgComponent_chatMsgComponent] {
+     background-color: #e60073 !important;
+     border-color: #e60073 !important;
+     color: #fff !important;
+ }
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent[nfchatui-chatMsgComponent_chatMsgComponent] {
+     background: #fff;
+     color: #000000 !important;
+     border: none;
+     border-radius: 1px;
+     display: block;
+     padding: 10px;
+     width: 100%;
+     font-family: dunkinsansBook !important;
+     font-size: 14px;
+ }
+/*    Prechat form Header and Footer*/
+.nfchatuiPrechatFormContainer.snapin-prechat-form-container .snapin-prechat-header {
+    background-color: #333333!important;
+    font-family: 'DunkinSansDisplay';
+}
+
+.nfchatuiPrechatFormContainer.snapin-prechat-form-container .snapin-prechat-header .header-title {
+    visibility: hidden;
+    font-size: 1px;
+    color: transparent;
+    letter-spacing: -1px;
+    margin: 3px 0 0 5px!important;
+    min-width: 69%!important;
+    text-align: center !important;
+}
+
+.nfchatuiPrechatFormContainer.snapin-prechat-form-container .snapin-prechat-header .header-title::before {
+    content: 'Virtual Assistant';
+    display: inline-block;
+    visibility: visible;
+    font-size: 14px;
+    letter-spacing: normal;
+    color: white;
+}
+
+.company-logo > img {
+    display: none;
+}
+
+.nfchatuiPrechatFormContainer.snapin-prechat-form-container .snapin-prechat-footer, .nfchatuiPrechatFormContainer.snapin-prechat-form-container .snapin-prechat-footer .snapin-prechat-submit {
+    display:none;
+    background-color: #E60073!important;
+    font-family: 'DunkinSansDisplay';
+}
+
+/*    Prechat form backdrop */
+.nfchatuiPrechatFormContainer.snapin-prechat-form-container {
+    background-color: white;
+}
+
+.slds-scope .chat-docker {
+    max-height: 600px!important;
+    height: 600px!important;
+}
+
+ /* menu borders*/
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent[nfchatui-chatMsgComponent_chatMsgComponent]:first-child {
+     background: #fff;
+     border: 1px solid #C5006D !important;
+     border-top-right-radius: 8px !important;
+     border-top-left-radius: 8px !important;
+     display: block;
+     padding: 10px;
+     width: 100%;
+ }
+
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent[nfchatui-chatMsgComponent_chatMsgComponent]:last-child {
+     background: #fff;
+     border: 1px solid #C5006D !important;
+     border-bottom-right-radius: 8px !important;
+     border-bottom-left-radius: 8px !important;
+     display: block;
+     padding: 10px;
+     width: 100%;
+ }
+
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent[nfchatui-chatMsgComponent_chatMsgComponent] {
+     background: #fff;
+     border: 1px solid #C5006D !important;
+     display: block;
+     padding: 10px;
+     width: 100%;
+ }
+
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] {
+     border: 0px solid #d3d3d3 !important;
+     border-radius: 8px;
+ }
+
+ /* top header whole*/
+ .nfChat.custom[nfchatui-chatWindow_chatWindow] .chatHeaderContainer[nfchatui-chatWindow_chatWindow] {
+     background-color: #333333 !important;
+     color: #fff;
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+     padding-bottom: 10px;
+     padding-top: 10px;
+ }
+
+ .nfChat.theme-stockx[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow], .theme-stockx[nfchatui-chatWindow_chatWindow] {
+     background-color: #FFFFFF !important;
+     border-color: #333333 !important;
+     font-family: proxima-nova,sans-serif!important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px;
+     font-weight: 600;
+ }
+ /* Please wait */
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] .userGreeting[nfchatui-connectingScreen_connectingScreen] .msg[nfchatui-connectingScreen_connectingScreen] {
+     background-color: #333333 !important;
+     color: #FFFFFF !important;
+ }
+
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] {
+     background-color: #FFFFFF !important;
+     border-color: #509e2f;
+     font-family: proxima-nova,sans-serif!important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px!important;
+     font-weight: 600!important;
+     height: 100%;
+ }
+
+ /*Connecting display -> bottom pane*/
+ .custom[nfchatui-chatWindow_chatWindow], .nfChat.custom[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow] {
+     background-color: #FFFFFF!important;
+     border-color: #000000 !important;
+     font-size: 14px;
+     font-weight: 600;
+ }
+
+ /* "Connecting" display */
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] .userGreeting[nfchatui-connectingScreen_connectingScreen] {
+     background: #333333 !important;
+     color: #ffffff;
+     height: max-content;
+ }
+
+ .nfChat.theme-stockx[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow], .theme-stockx[nfchatui-chatWindow_chatWindow] {
+     background-color: #FFFFFF;
+     border-color: #509e2f;
+     font-family: proxima-nova,sans-serif!important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px;
+     font-weight: 600;
+ }
+
+ .nfChat.theme-stockx[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow], .theme-stockx[nfchatui-chatWindow_chatWindow] {
+     background-color: #f4f4f4;
+     border-color: #FFFFFF !important;
+     font-family: proxima-nova,sans-serif!important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px;
+     font-weight: 600;
+ }
+
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] .userGreeting[nfchatui-connectingScreen_connectingScreen] .msg[nfchatui-connectingScreen_connectingScreen] {
+     text-align: center;
+     height: 100%;
+     background-color: #333333;
+ }
+
+ /* "Connecting" text */
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] .userGreeting[nfchatui-connectingScreen_connectingScreen] .msg[nfchatui-connectingScreen_connectingScreen] {
+     text-align: center;
+     height: 100%;
+     font-family: dunkinsansBook;
+     font-size: 14px;
+     color: #FFFFFF;
+
+ }
+
+ /*3 loading dots*/
+ .dot[nfchatui-connectingScreen_connectingScreen] {
+     background: #E60073 !important;
+     fill: #E60073 !important;
+     display: inline-block;
+     width: 8px;
+     height: 8px;
+     border-radius: 50%;
+     margin-right: 15px;
+     animation: a 1.5s linear infinite;
+ }
+ .connectingBody[nfchatui-connectingScreen_connectingScreen] .agentloading[nfchatui-connectingScreen_connectingScreen] {
+     height: 30%;
+     width: 100%;
+     display: flex !important;
+     background-color: #f4f4f4 !important;
+ }
+
+ /*Exit prompts not buttons*/
+ .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .layout[nfchatui-closeChatPrompt_closeChatPrompt] .heading[nfchatui-closeChatPrompt_closeChatPrompt] .question[nfchatui-closeChatPrompt_closeChatPrompt] {
+     font-size: 18px;
+     margin: 10px 0;
+     display: block;
+     color: #000000;
+     font-family: dunkinsans;
+ }
+
+ .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .layout[nfchatui-closeChatPrompt_closeChatPrompt] .heading[nfchatui-closeChatPrompt_closeChatPrompt] .info[nfchatui-closeChatPrompt_closeChatPrompt] {
+     font-family: dunkinsansBook;
+     font-size: 14px;
+     margin: 10px 0;
+     display: block;
+     line-height: 1.3;
+     color: #000000;
+ }
+
+ /*Email Form card -BEGIN-*/
+ /* Email Form card title*/
+
+ .formTitle[nfchatui-einsteinBotFormCard_einsteinBotFormCard] {
+     font-size: 16px !important;
+     font-family: dunkinsans !important;
+     font-weight: none !important;
+     font-variant: none !important;
+     color: #000000 !important;
+ }
+
+ /* email prompt*/
+ .slds-scope .slds-form-element__label {
+     font-family: dunkinsansBook !important;
+     display: flex !important;
+ }
+
+ /*submit button*/
+ .slds-scope .slds-button_brand, .slds-scope .slds-button--brand {
+     border: 1px solid;
+     border-radius: 30px !important;
+     background-color: #E60073 !important;
+     border-color: #E60073 !important;
+     font-family: dunkinsans;
+     padding-right: 50px !important;
+     padding-left: 50px !important;
+     text-align: center !important;
+     margin-top: 10px;
+ }
+
+ /*email text*/
+ .slds-scope .slds-has-error .slds-input {
+    font-family:dunkinsansBook !important;
+ }
+
+ /*no info*/
+ .slds-scope a {
+    font-family:dunkinsansBook;
+    margin-top: 12 !important;
+ }
+
+ /*email if you don't fill it in*/
+ .slds-scope .slds-has-error .slds-form-element__help {
+     font-family:dunkinsansBook;
+ }
+
+
+ /*form card text input default*/
+ .slds-scope .slds-input {
+     font-family: dunkinsansBook !important;
+     font-size: 14px !important;
+     width: 190px !important;
+ }
+
+ .slds-scope [role=combobox] input[readonly] {
+     font-size: 14px !important;
+ }
+
+ .slds-scope textarea {
+     font-size: 14px !important;
+     width: 190px !important;
+     height: 75px !important;
+ }
+
+ .slds-scope .slds-form-element__label {
+     color: #000000 !important;
+     font-size: 13px !important;
+ }
+
+ /*organize form*/
+ .slds-scope .slds-align_absolute-center, .slds-scope .slds-align--absolute-center {
+     display: grid !important;
+     justify-content: center;
+     align-content: center;
+     align-items: center;
+     text-align: center !important;
+     margin: auto;
+ }
+
+
+
+ /*i dont have this info text */
+ .action[nfchatui-einsteinBotAction_einsteinBotAction] {
+     display: block;
+     margin: 0 5px;
+     text-align: center;
+ }
+
+ /* User message */
+ .chat-content.standard.chasitor.custom[nfchatui-chatMsgComponent_chatMsgComponent] {
+     background-color: #e60073 !important;
+     color: #fff;
+     font-family: dunkinsansBook !important;
+     box-shadow: 0 0 7px -5px;
+     margin-bottom: 5px;
+ }
+
+ /*yes no quick reply*/
+ .chat-content.quick-replies.custom[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled)[nfchatui-chatMsgComponent_chatMsgComponent] {
+        border-color: #E60073 !important;
+        border-radius: 22px !important;
+        border: 2px solid;
+        color: #E60073 !important;
+        background-color: #FFFFFF;
+        font-family: dunkinsans;
+        display: inline;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        margin: 6px;
+ }
+
+ chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent] {
+     border-radius: 22px !important;
+     padding-left: 24px !important;
+     padding-right: 24px !important;
+ }
+
+ .chat-content.menu.theme-stockx[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled):hover[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies.theme-stockx[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled):hover[nfchatui-chatMsgComponent_chatMsgComponent] {
+    font-family: dunkinsans !important;
+    color: #FFFFFF !important;
+ }
+
+ /*
+ .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent] {
+     background-color: #fff!important;
+     border-color: #d3d3d3!important;
+     color: #d3d3d3!important;
+     font-family: dunkinsans !important;
+     width: 74px;
+     height: 26px;
+     border-radius: 22px;
+     border: 2px solid;
+     display: inline;
+     margin: 6px;
+ }*/
+
+ /* Type your message prompt*/
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] {
+     background-color: #ffffff!important;
+     border-color: none !important;
+     font-family: dunkinsansBook!important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px;
+     font-weight: 600;
+ }
+ }
+ .nfChat.custom[nfchatui-chatWindow_chatWindow] .chatFooterContainer[nfchatui-chatWindow_chatWindow] {
+     background-color: #ffffff !important;
+ }
+
+ .slds-scope .slds-p-top_small, .slds-scope .slds-p-top--small {
+     padding-top: .75rem;
+     background: #ffffff !important;
+     font-family: dunkinsansBook !important;
+ }
+
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] .userInput[nfchatui-chatFooter_chatFooter] {
+     width: 296px !important;
+     height: 37px !important;
+     background-color: #f4f4f4 !important;
+     border: 0px solid #d9dbdd !important;
+     border-radius: 0 !important;
+     transition: border .1s linear,background-color .1s linear;
+     display: inline-block;
+     padding: 0 1rem 0 .75rem;
+     line-height: 1.875rem;
+     min-height: calc(1.875rem + 2px);
+     box-shadow: inherit;
+ }
+
+ /*Joe signature, timestamp*/
+ .chatMsgContainer[nfchatui-chatBody_chatBody] .username[nfchatui-chatBody_chatBody] {
+     line-height: 1.3;
+     font-size: 10px;
+     font-weight: 400;
+     color: #666666;
+     font-family: dunkinsansBook;
+     font-size: 8px !important;
+     padding-top: 3px;
+     padding-bottom: 5px;
+ }
+
+     /*timestamp*/
+.chatMsgContainer[nfchatui-chatBody_chatBody] .username[nfchatui-chatBody_chatBody] {
+   }
+
+ .ctaIcon[nfchatui-chatwindow_chatwindow]{
+     width: 0px;
+ }
+
+ .nfCTA[nfchatui-chatwindow_chatwindow]{
+     width: 200px;
+ }
+
+ /* CTA */
+ .ctaClass[nfchatui-chatWindow_chatWindow] {
+     background-color: #333333 !important;
+     border-color: #333333 !important;
+     padding: 10px 0px !important;
+     font-family: dunkinsans !important;
+     -webkit-font-smoothing: antialiased!important;
+     font-size: 14px;
+     font-weight: 600;
+     width: 100% !important;
+     height: 45px!important;
+     border-radius: 22px !important;
+ }
+ .nfChatComponent[nfchatui-chatWindow_chatWindow] {
+     border-radius: 22px !important;
+     z-index: 200 !important;
+ }
+
+ .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaIcon[nfchatui-chatWindow_chatWindow] img[nfchatui-chatWindow_chatWindow] {
+     height: 25px !important;
+     width:  25px !important;
+     margin-left: 15px !important;
+ }
+
+ .cta[nfchatui-chatWindow_chatWindow] {
+     height: min-content !important;
+     height: min-content !important;
+ }
+
+ .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaText[nfchatui-chatWindow_chatWindow] {
+     color: #fff;
+     margin: auto;
+     font-weight: 700;
+     font-family: dunkinsans !important;
+     text-align: center !important;
+     cursor: pointer;
+     padding: 0 4px;
+ }
+
+ /*formcard icons*/
+ .image[nfchatui-einsteinBotInput_einsteinBotInput] {
+     border-radius: 5px;
+     height: 20px !important;
+     width: 20px !important;
+ }
+
+ .imageDiv[nfchatui-einsteinBotInput_einsteinBotInput] {
+     padding: 32px 6px 0 !important;
+ }
+
+ .slds-scope .slds-input-has-icon {
+     position: absolute !important;
+ }
+
+ /*formcard text.com*/
+
+ .slds-scope .slds-align_absolute-center, .slds-scope .slds-align--absolute-center {
+     font-family: dunkinsansBook !important;
+ }
+
+ /*formacard spacing */
+ .slds-scope .slds-combobox {
+     padding-bottom: 20px !important;
+ }
+
+ .slds-scope .slds-form-element__label {
+     padding-top: 5px !important;
+     margin-left: -3;
+     width: 203;
+ }
+ .slds-form-element[nfchatui-einsteinBotFormCard_einsteinBotFormCard] {
+     padding: 3px 0 !important;
+ }
+
+
+ /*chat avatar icon*/
+ .chatBody[nfchatui-chatBody_chatBody] .chatMsgContainer[nfchatui-chatBody_chatBody] .botIcon[nfchatui-chatBody_chatBody] .botavatar[nfchatui-chatBody_chatBody] {
+     width: 32px !important;
+     height: 32px !important;
+     border-radius: 400px !important;
+     background-color: #ffffff !important;
+ }
+
+ /*agent avatar connected icon*/
+ .agentavatar {
+     width: 72px !important;
+ }
+ /*agent avatar icon*/
+.chatMsgContainer.process[nfchatui-chatBody_chatBody] .botIcon[nfchatui-chatBody_chatBody] .agentavatar[nfchatui-chatBody_chatBody] {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 400px;
+    background-color: #ffffff !important;
+}
+ /*Datepicker*/
+ .slds-scope .slds-datepicker td>.slds-day {
+     font-family: dunkinsansBook;
+ }
+ .slds-scope .slds-datepicker__filter {
+     padding: .25rem;
+     margin-bottom: 12px;
+ }
+ select {
+     opacity: 1 !important;
+ }
+
+ .slds-scope .slds-select {
+     margin-top: 1px !important;
+ }
+
+ /*time picker*/
+ .slds-scope .slds-dropdown-trigger_click.slds-is-open .slds-dropdown, .slds-scope .slds-dropdown-trigger--click.slds-is-open .slds-dropdown {
+     display: block;
+     visibility: visible;
+     text-align: left !important;
+     font-family: DunkinSansBook !important;
+     font-size: 14px !important;
+     font-weight: normal;
+     font-stretch: normal;
+     font-style: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: var(--black) !important;
+     opacity: 1;
+ }
+
+ /* Location drop down*/
+ .slds-scope .slds-dropdown-trigger_click.slds-is-open .slds-dropdown, .slds-scope .slds-dropdown-trigger--click.slds-is-open .slds-dropdown {
+     display: block;
+     visibility: visible;
+     opacity: 1;
+     width: 100%;
+     left: 0px !important;
+     margin-right: 0px !important;
+     margin-bottom: 0px !important;
+     margin-top: 12px;
+     font-size: 14px !important;
+     height: fit-content !important;
+ }
+
+ .slds-scope .slds-dropdown-trigger_click.slds-is-open .slds-dropdown #dropdown-element-43 {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      width: 190px !important;
+      max-width: 110% !important;
+      max-height: 75px !important;
+      left: 0px !important;
+      margin-right: 0px !important;
+      margin-bottom: 0px !important;
+      margin-top: 8px;
+      font-size: 14px !important;
+      height: fit-content !important;
+  }
+
+ .slds-scope .slds-datepicker td.slds-is-selected>.slds-day {
+     background: #E60073 !important;
+     color: #E60073 !important;
+ }
+
+ .slds-scope .slds-text-link {
+     color: #E60073 !important;
+     font-size: 8px !important;
+ }
+
+ .slds-scope .slds-datepicker td.slds-is-today>.slds-day {
+    /* background-color: #E60073 !important;
+     color: #ffffff !important;*/
+ }
+
+ .slds-scope .slds-datepicker th, .slds-scope .slds-datepicker td {
+     text-align: center;
+     font-family: dunkinsansBook;
+ }
+
+ .slds-scope .slds-align-middle {
+     vertical-align: middle;
+     align-self: center;
+     font-family: dunkinsansBook !important;
+     font-size: 10px;
+ }
+
+ .slds-scope .slds-datepicker th {
+     color: #000000 !important;
+     font-size: 8px !important;
+     padding: 0px !important;
+ }
+
+ .slds-scope .slds-select_container:before {
+     border-bottom: 5px solid #E60073 !important;
+     margin-top: 2px;
+     height: 2.5px !important;
+     width: 5px !important;
+     margin-right: -3px;
+ }
+
+ .slds-scope .slds-select_container:after {
+     border-top: 5px solid #E60073 !important;
+     margin-bottom: -6px !important;
+     width: 5px !important;
+     height: 2.5px !important;
+     margin-right: -3px;
+ }
+
+ .slds-scope .slds-datepicker td>.slds-day {
+     width: 2rem;
+     height: 2rem;
+     display: contents !important;
+     position: relative;
+     min-width: 2rem;
+     border-radius: 50%;
+     line-height: normal !important;
+     margin: auto;
+     font-size: 8px !important;
+ }
+ .slds-scope .slds-select_container {
+     position: relative;
+     font-size: 10px;
+     width: 50px;
+     height: 22px;
+ }
+
+ .slds-scope .slds-select_container .slds-select {
+     -moz-appearance: none;
+     -webkit-appearance: none;
+     padding-left: .5rem;
+     padding-right: 0rem !important;
+ }
+
+ .slds-scope .slds-button_icon, .slds-scope .slds-button--icon, .slds-scope .slds-button_icon-inverse, .slds-scope .slds-button--icon-inverse, .slds-scope .slds-button_icon-container, .slds-scope .slds-button--icon-container, .slds-scope .slds-button_icon-border, .slds-scope .slds-button--icon-border, .slds-scope .slds-button_icon-border-filled, .slds-scope .slds-button--icon-border-filled, .slds-scope .slds-button_icon-border-inverse, .slds-scope .slds-button--icon-border-inverse, .slds-scope .slds-button_icon-more, .slds-scope .slds-button--icon-more, .slds-scope .slds-button_icon-error, .slds-scope .slds-button--icon-error {
+     color: #e60073 !important;
+ }
+
+ /*close buttons*/
+
+ .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .layout[nfchatui-closeChatPrompt_closeChatPrompt] .buttons[nfchatui-closeChatPrompt_closeChatPrompt] .closeBtn[nfchatui-closeChatPrompt_closeChatPrompt] {
+     background: #e60073 !important;
+     border: 1px solid #e60073 !important;
+     border-radius: 30px!important;
+     font-family: dunkinsans!important;
+     font-size: 16px!important;
+     color: #ffffff !important;
+ }
+
+ /* Close Button / Disable Input, should be split into different styles */
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter] {
+     color: #f4f4f4 !important;
+     background-color: #AAAAAA !important;
+     border-radius: 6px;
+     width: 275px !important;
+     font-family: dunkinsans !important;
+ }
+
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] {
+     background-color: #ffffff!important;
+ }
+
+ /*chat loading dots*/
+ .dot[nfchatui-userTyping_userTyping] {
+     fill: #e60073 !important;
+ }
+ .typing[nfchatui-userTyping_userTyping] .typing_bubble[nfchatui-userTyping_userTyping] {
+     width: 20%;
+     height: 29px !important;
+ }
+
+
+ /*Header*/
+ .chatHeader[nfchatui-chatHeader_chatHeader] .headerMessages[nfchatui-chatHeader_chatHeader] div[nfchatui-chatHeader_chatHeader] {
+     margin-top: 1px !important;
+     margin-bottom: 0px !important;
+     padding: 0px !important;
+ }
+
+ .chatHeader[nfchatui-chatHeader_chatHeader] .headerMessages[nfchatui-chatHeader_chatHeader] .botavatar[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerMessages[nfchatui-chatHeader_chatHeader] .endChat[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerMessages[nfchatui-chatHeader_chatHeader] .saveChat[nfchatui-chatHeader_chatHeader] {
+     height: 36px !important;
+     width: 36px !important;
+ }
+
+ /*Chat time signtaure*/
+ .chat-content.custom[nfchatui-chatMsgComponent_chatMsgComponent] {
+     font-family: dunkinsansbook!important;
+ }
+
+ /*Form card mini input icons*/
+ .slds-input-has-icon .slds-input__icon svg,
+ .slds-dropdown .slds-icon_container svg {
+     fill: #e60073;
+     margin-bottom: 8px !important;
+ }
+ .slds-scope .slds-input-has-icon_right .slds-input__icon, .slds-scope .slds-input-has-icon--right .slds-input__icon {
+     right: 6px !important;
+ }
+
+ .slds-scope .slds-input__icon-group_right .slds-input__icon_right, .slds-scope .slds-input__icon-group_right {
+     right: 3.5px!important;
+     display: inline-table;
+ }
+
+ /*mini cards*/
+ lightning-layout[nfchatui-einsteinbotminicard_einsteinbotminicard]{
+     width: 100%;
+ }
+ c-einstein-bot-input[nfchatui-einsteinbotformcard_einsteinbotformcard] * label{
+     font-weight: 100;
+     width: 205px;
+ }
+ /* image icon */
+ img[nfchatui-einsteinbotminicard_einsteinbotminicard]{
+    margin-top: -4px;
+    height: 32px !important;
+    width: 32px !important;
+    padding: 2px !important;
+    max-width: none !important;
+ }
+
+ /* skip link */
+ div[nfchatui-einsteinbotformcard_einsteinbotformcard] * a{
+     padding-top: 10px;
+ }
+
+ /*Chat ended dialog*/
+
+ .chat-content.custom[nfchatui-chatMsgComponent_chatMsgComponent] .nfchautui_userText {
+     text-align: center !important;
+     font-family: dunkinsansBook !important;
+ }
+
+ .chatMsg[nfchatui-chatMsgComponent_chatMsgComponent] .chat-content.standard.event.custom {
+     text-align: center !important;
+ }
+
+ /*Broadcast Message */
+ .chat-content.standard.agent.custom.broadcastMessage[nfchatui-chatMsgComponent_chatMsgComponent] {
+     border: 0px solid !important;
+ }
+
+ /*Mini card icon*/
+ .cardIconContainer[nfchatui-einsteinBotMiniCard_einsteinBotMiniCard] {
+     padding: 8px 6px 0;
+     margin-top: -2px;
+     margin-right: 10px;
+ }
+ .containerDiv[nfchatui-einsteinBotMiniCardContainer_einsteinBotMiniCardContainer] {
+     border: 0px !important;
+ }
+
+ .disabled button.slds-button.slds-button_brand {
+     background-color: gray !important;
+     border: 1px solid rgb(217, 219, 221) !important;
+ }
+
+ /*Disabled text buttons*/
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter], .chatFooter.custom[nfchatui-chatFooter_chatFooter] .disableBtn[nfchatui-chatFooter_chatFooter] {
+     border-radius: 6px !important;
+     height: 44px;
+     font-family: dunkinsans!important;
+     background: #AAAAAA !important;
+     border: 1px solid rgb(217, 219, 221) !important;
+     width: 290px !important;
+     box-shadow: 2px 2px 13px 0 rgba(0,0,0,.13);
+     margin: 10px !important;
+     font-weight: 400;
+     font-size: 14px !important;
+     color: #ffffff !important;
+     background-color: #f4f4f4;
+ }
+/* SFCB-198 Fixes Start */
+.carousel-container lightning-formatted-rich-text.carousel-card.slds-rich-text-editor__output {
+    background: none !important;
+    border-top: none !important;
+}
+
+.carousel-container .slideshow-container {
+    border: none !important;
+}
+
+.carousel-container button.slds-button.slds-button_brand {
+    width: 202px;
+    height: auto;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+/*Carousel Arrow icons*/
+.slide.right .icon[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel] {
+    background-color: #ffffff !important;
+    content: url('https://dunkinqa-bot.cs125.force.com/resource/NF_bot_customer_service/img/carousel-rightarrow@3x.png') !important;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0, 0.15) !important;
+}
+
+.slide.left .icon[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel] {
+    background-color: #ffffff !important;
+    content: url('https://dunkinqa-bot.cs125.force.com/resource/NF_bot_customer_service/img/carousel-leftarrow@3x.png') !important;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0, 0.15) !important;
+}
+
+.dot.active[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel], .dot:hover[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel] {
+    background-color: #e60073 !important;
+    height: 10px !important;
+    width: 10px !important;
+}
+.dot[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel] {
+    background-color: rgba(230, 0, 115, 0.5) !important;
+    margin: 0px 4px !important;
+    height: 8px!important;
+    width: 8px !important;
+}
+
+/*Form card Store address state dropdown*/
+ .form-card.storeAddress .slds-form-element:last-child .slds-dropdown-trigger.slds-is-open .slds-dropdown{
+     height: 75px !important;
+ }
+
+@media (min-width: 1200px) {
+    .carousel-container .carousel-card{
+        padding: 0px !important;
+    }
+}
+/* SFCB-198 Fixes End */
+
+
+/* Store locator card*/
+.slds-scope .slds-grow {
+    flex-grow: 1;
+    width: 190px !important;
+}
+
+/* 'Complete this field' text in Store Locator state selection */
+.slds-form-element__help[id*="help-text-"] {
+    margin-top: 10px !important;
+}
+
+/* DD PERKS card*/
+.slds-scope b, .slds-scope strong {
+    font-family: dunkinsansBook !important;
+        /*font-weight: 400 !important;*/
+        color: black;
+        font-size: 14px !important;
+       /* margin-left: 8px !important;*/
+    }
+
+.slds-scope caption, .slds-scope th {
+    text-align: left;
+    font-family: dunkinsans !important;
+    color: #E60073 !important;
+    font-size: 16px !important;
+}
+
+.slds-scope caption, .slds-scope td {
+    text-align: left;
+    font-family: dunkinsansBook !important;
+}
+
+.slds-scope .slds-rich-text-editor__textarea th, .slds-scope .slds-rich-text-editor__textarea td, .slds-scope .slds-rich-text-editor__output th, .slds-scope .slds-rich-text-editor__output td {
+    padding: .5rem;
+    text-align: center !important;
+}
+
+.slds-scope table {
+      width: 100%;
+      margin-top: -10px !important;
+}
+
+#snapin-1 > div.nfChat.custom > c-chat-body > div > div:nth-child(4) > div.slds-media__body > c-chat-msg-component > div > div > div > div > c-einstein-bot-mini-card-container > div > c-einstein-bot-mini-card > div > lightning-layout > slot > lightning-layout-item:nth-child(1) > slot > lightning-layout > slot > lightning-layout-item.expandableIcon.slds-size_2-of-12 > slot > img{
+    content: url('https://dunkinqa-bot.cs125.force.com/resource/NF_bot_customer_service/img/chat-area-icons-expand-arrow@3x.png') !important;
+    background-color: #ffffff !important;
+    height: 22px !important;
+    width: 22px !important;
+    margin-top: 3px;
+    margin-left: 12px;
+}
+
+#snapin-1 > div.nfChat.hidden.custom{
+     display:none !important;
+}
+
+.nfCTA.offline[nfchatui-chatwindow_chatwindow] {
+    display:none !important;
+}
+
+/*store visit calendar*/
+
+
+.nfChatComponent {
+    transition: transform 2s;
+}
+
+/*moving the cta*/
+/*
+.nfChatComponent.moveUp {
+    transform: translateY(-160px);
+}*/
+
+/*Chat border*/
+.nfChat.custom[nfchatui-chatWindow_chatWindow] .chatFooterContainer[nfchatui-chatWindow_chatWindow] {
+    border-color: #333333 !important;
+ }
+
+/*type your message/ chat footer*/
+ .slds-scope .slds-p-top_small, .slds-scope .slds-p-top--small {
+     padding-right: 15px;
+     padding-top: 0px !important;
+ }
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter]{
+     padding-top: 20px;
+     padding-bottom: 20px;
+     padding-left: 15px;
+     border-top: 2px solid #333333 !important;
+ }
+
+ .nfChat[nfchatui-chatWindow_chatWindow] .chatFooterContainer[nfchatui-chatWindow_chatWindow] {
+     border-top: 0px !important;
+     padding: 0px 0px 0px !important;
+    /* margin: 10px 15px 20px !important;*/
+ }
+ .nfChat[nfchatui-chatWindow_chatWindow] .chatFooterContainer[nfchatui-chatWindow_chatWindow]{
+     padding: 0px !important;
+ }
+ .chatFooter.custom[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter], .chatFooter.custom[nfchatui-chatFooter_chatFooter] .disableBtn[nfchatui-chatFooter_chatFooter] {
+     border-radius: 6px !important;
+     height: 44px;
+     font-family: dunkinsans!important;
+     background: #AAAAAA !important;
+     border: 1px solid rgb(217, 219, 221) !important;
+     width: 290px !important;
+     box-shadow: 2px 2px 13px 0 rgba(0,0,0,.13);
+     margin: 0px !important;
+     font-weight: 400;
+     font-size: 14px !important;
+     color: #ffffff !important;
+     background-color: #f4f4f4;
+ }
+
+
+.nfChatComponent[nfchatui-chatWindow_chatWindow] {
+    bottom: 30px !important;
+}
+
+/*Cta position*/
+@media screen and (max-width: 480px){
+    .nfChatComponent[nfchatui-chatWindow_chatWindow] {
+        bottom: 22px;
+        right: 15px !important;
+    }
+}
+
+/* IE 10 & 11*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+   .slds-scope .slds-align_absolute-center, .slds-scope .slds-align--absolute-center {
+        display: -ms-grid !important;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center !important;
+        margin: auto;
+     }
+
+
+
+     .nfChatComponent[nfchatui-chatWindow_chatWindow] {
+        bottom: 30px !important;
+     }
+
+     [nfchatui-chatWindow_chatWindow].nfChat{
+         height: 100% !important;
+     }
+
+     [nfchatui-chatWindow_chatWindow].cta{
+         height: auto !important;
+     }
+
+
+        .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .closeIcon[nfchatui-chatHeader_chatHeader],
+        .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .minimizeIcon[nfchatui-chatHeader_chatHeader] {
+              width: 25px;
+              height: 25px;
+              display: flex !important;
+              margin-top: 5px !important;
+              cursor: pointer;
+              padding: 4px;
+        }
+
+
+      #snapin-1 > div.nfChat.custom > c-chat-header > div > div.headerMessages > div > div:nth-child(1) > div:nth-child(1) > img{
+          margin-left: 5px !important;
+      }
+
+        /* Chat message formatting */
+
+        .chatBody .chatMsgContainer.userprofile:not(.process) {
+            display: -ms-grid !important;
+            -ms-grid-columns: auto 1fr;
+        }
+
+        .chatBody .chatMsgContainer.userprofile > .slds-media__figure {
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .chatBody .chatMsgContainer.userprofile > .slds-media__body {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+        }
+
+        .chatBody .chatMsgContainer.userprofile > .msg-spacer {
+            -ms-grid-column: 1;
+            -ms-grid-row: 2;
+        }
+
+        .chatBody .chatMsgContainer.userprofile > .username {
+            -ms-grid-column: 2;
+            -ms-grid-row: 2;
+        }
+
+        .slds-scope img {
+            width: 25px;
+            max-width 100%;
+            height: 15px;
+        }
+
+        .slds-scope .slds-align_absolute-center,
+        .slds-scope .slds-align--absolute-center {
+            display: block !important;
+        }
+}
+
+
+ /*mobile*/
+ @media only screen and (max-width: 600px){
+     /*Chat body*/
+     .nfChatComponent[nfchatui-chatWindow_chatWindow] {
+         box-shadow: 0px 0px 12px 0px rgba(0,0,0, 0.25) !important;
+         max-height: 90vh !important;
+         max-width: 90vw !important;
+         margin-right: 3% !important;
+         margin-left: 6% !important;
+         z-index: 9999 !important;
+     }
+     .chatHeader[nfchatui-chatHeader_chatHeader] .headerMessages[nfchatui-chatHeader_chatHeader] div[nfchatui-chatHeader_chatHeader] {
+         margin-top: 1px !important;
+         margin-bottom: 6px !important;
+         padding: 0px !important;
+     }
+
+     /*Chat bot itself*/
+     .custom[nfchatui-chatWindow_chatWindow], .nfChat.custom[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow] {
+        font-size: 10px !important;
+        max-height: 100vh !important;
+        height: 100% !important;
+        width: 100% !important;
+        max-width: 100vh !important;
+     }
+
+     /*3 loading dots*/
+      .agentloading[nfchatui-connectingScreen_connectingScreen] {
+          display: inline-flex;
+          align-self: center !important;
+      }
+      .dot[nfchatui-connectingScreen_connectingScreen] {
+          background: #E60073 !important;
+          fill: #E60073 !important;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: 15px;
+          animation: a 1.5s linear infinite;
+      }
+     /* Chat messages*/
+     .chat-content.standard.agent.custom[nfchatui-chatMsgComponent_chatMsgComponent] {
+         max-width: 80% !important;
+         max-height: 80% !important;
+         background-color: #fff;
+         color: #000;
+     }
+
+     /*Send icon*/
+     .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] .sendIconContainer[nfchatui-chatFooter_chatFooter] .sendIcon[nfchatui-chatFooter_chatFooter] {
+         position: absolute;
+         width: 30px;
+         height: 30px;
+         margin-left: 84% !important;
+         margin-top: -0.5% !important;
+         cursor: pointer;
+     }
+     .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] {
+         margin: 1px;
+         width: 70vw! important;
+     }
+
+     /*message text*/
+     .slds-scope .slds-rich-text-editor__textarea, .slds-scope .slds-rich-text-editor__output {
+         font-family: dunkinsansBook;
+         font-size: 12px !important;
+     }
+
+   /*Header*/
+    .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .closeIcon[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .header[nfchatui-chatHeader_chatHeader], .chatHeader[nfchatui-chatHeader_chatHeader] .headerBar[nfchatui-chatHeader_chatHeader] .minimizeIcon[nfchatui-chatHeader_chatHeader] {
+         font-size: 12px !important;
+     }
+
+     /*Header text*/
+     .custom[nfchatui-chatWindow_chatWindow], .nfChat.custom[nfchatui-chatWindow_chatWindow] .chatBodyContainer[nfchatui-chatWindow_chatWindow] .headerMessages {
+             font-size: 12px !important;
+     }
+
+     /*Chat started*/
+     .chat-content.custom[nfchatui-chatMsgComponent_chatMsgComponent] .nfchautui_userText {
+         text-align: center !important;
+         font-size: 12px !important;
+         font-family: dunkinsansBook !important;
+     }
+
+     /*submit buttons*/
+     .slds-scope .slds-button_brand, .slds-scope .slds-button--brand {
+         border: 1px solid;
+         border-radius: 30px !important;
+         background-color: #E60073 !important;
+         border-color: #E60073 !important;
+         font-family: dunkinsans;
+         padding-right: 50px !important;
+         padding-left: 50px !important;
+         text-align: center !important;
+         margin-top: 10px;
+     }
+     /*and i dont have this info prompt*/
+     .action[nfchatui-einsteinBotAction_einsteinBotAction] {
+         display: block;
+         margin: 0 5px;
+         text-align: center;
+         font-size: 12px;
+     }
+
+     /*Form card*/
+     .slds-scope .slds-rich-text-editor__textarea, .slds-scope .slds-rich-text-editor__output .b{
+         color: #333333 !important;
+     }
+
+     .slds-scope .slds-size_8-of-12, .slds-scope .slds-size--8-of-12 {
+         width: 66.6666666667%;
+         margin-top: 10px;
+     }
+
+     /*Carousel*/
+     .carousel-card {
+         padding: 0px !important;
+     }
+
+     /*Type your message*/
+     #snapin-1 > div.nfChat.custom > c-chat-footer > div > div.slds-grid.slds-p-top--small.slds-align--absolute-center.footerBar{
+         justify-content: left !important;
+     }
+
+     /* form title*/
+     .formTitle[nfchatui-einsteinBotFormCard_einsteinBotFormCard] {
+         font-size: 14px !important;
+         font-family: dunkinsans !important;
+         font-weight: none !important;
+         font-variant: none !important;
+         color: #000000 !important;
+     }
+
+     /* form element labels*/
+     .slds-scope .slds-form-element__label {
+         color: #000000 !important;
+         font-size: 10px !important;
+         margin-left: 8px !important;
+     }
+
+   .slds-scope .slds-input {
+       font-family: dunkinsansBook !important;
+       font-size: 10px !important;
+       min-height: 22px !important;
+       width: 70% !important;
+       max-height: 28px !important;
+       height: 100% !important;
+       margin-left: -30px !important;
+   }
+     /*formcard images*/
+     .imageDiv[nfchatui-einsteinBotInput_einsteinBotInput] {
+         padding: 24px 6px 0 !important;
+     }
+
+     .image[nfchatui-einsteinBotInput_einsteinBotInput] {
+         border-radius: 5px;
+         height: 16px !important;
+         width: 16px !important;
+         margin-left: 10px;
+         margin-top: -8px;
+     }
+     .imageDiv[nfchatui-einsteinBotInput_einsteinBotInput] {
+         padding: 0px !important;
+         margin-right: -30px !important;
+         margin-top: 26px !important;
+     }
+
+     /* Store details location drop down*/
+     .slds-scope [role=combobox] input[readonly] {
+         margin-left: 15px !important;
+     }
+     .slds-scope [role=combobox] .slds-has-error .slds-form-element__help {
+        color: blue !important;
+     }
+
+     /*Tell us about your visit*/
+     .slds-scope textarea {
+         font-size: 10px !important;
+         width: 132px !important;
+         height: 75px !important;
+     }
+
+    /*Message loading dots*/
+    .dot[nfchatui-userTyping_userTyping]{
+        r: 4 !important
+    }
+    .typing[nfchatui-userTyping_userTyping] .typing_bubble[nfchatui-userTyping_userTyping] {
+        width: 25% !important;
+        height: 29px !important;
+    }
+
+
+
+    /*type your message*/
+    .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] .userInput[nfchatui-chatFooter_chatFooter] {
+        width: 100% !important;
+        height: 100% !important;
+        background-color: #f4f4f4 !important;
+        border: 0px solid #d9dbdd !important;
+        border-radius: 0 !important;
+        transition: border .1s linear,background-color .1s linear;
+        display: inline-block;
+        padding: 0 8rem 0 0.75rem;
+        line-height: 1.875rem;
+        min-height: calc(1.875rem + 2px);
+        box-shadow: inherit;
+        font-size: 12px !important;
+    }
+
+    /*disable input*/
+    .chatFooter.custom[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter], .chatFooter.custom[nfchatui-chatFooter_chatFooter] .disableBtn[nfchatui-chatFooter_chatFooter] {
+        border-radius: 6px !important;
+        height: 44px;
+        font-family: dunkinsans!important;
+        background: #AAAAAA !important;
+        border: 1px solid rgb(217, 219, 221) !important;
+        width: 240px !important;
+        box-shadow: 2px 2px 13px 0 rgba(0,0,0,.13);
+        margin: 10px !important;
+        margin-left: 8px !important;
+        font-weight: 400;
+        font-size: 12px !important;
+        color: #ffffff !important;
+        background-color: #f4f4f4;
+    }
+
+    .chatFooter.custom[nfchatui-chatFooter_chatFooter] .closeBtn[nfchatui-chatFooter_chatFooter] {
+            border-radius: 6px !important;
+            height: 44px;
+            font-family: dunkinsans!important;
+            background: #AAAAAA !important;
+            border: 1px solid rgb(217, 219, 221) !important;
+            width: 98% !important;
+            box-shadow: 2px 2px 13px 0 rgba(0,0,0,.13);
+            margin: 10px !important;
+            margin-left: -5px !important;
+            font-weight: 400;
+            font-size: 12px !important;
+            color: #ffffff !important;
+            background-color: #f4f4f4;
+        }
+
+    /*yes/no*/
+    .chat-content.quick-replies.custom[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:not(:disabled)[nfchatui-chatMsgComponent_chatMsgComponent] {
+        border-color: #E60073 !important;
+        border-radius: 22px !important;
+        border: 2px solid;
+        color: #E60073 !important;
+        background-color: #FFFFFF;
+        font-family: dunkinsans;
+        display: inline;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin: 6px;
+    }
+
+    .chat-content.quick-replies[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent] {
+        border-radius: 22px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /*Store locator*/
+    .slds-scope [role=combobox] input[readonly] {
+        padding-left: .75rem;
+        border-color: rgb(217, 219, 221);
+        background-color: rgb(255, 255, 255);
+        font-size: inherit;
+        font-weight: 400;
+         margin-left: 2px !important;
+         font-size: 10px !important;
+         width: 84% !important;
+    }
+
+    .slds-scope .slds-input-has-icon .slds-input__icon {
+        width: .875rem;
+        height: .875rem;
+        position: absolute;
+        top: 50%;
+        margin-top: -.4375rem;
+        line-height: 1;
+        border: 0;
+        z-index: 2;
+        fill: rgb(171, 173, 176);
+        margin-right: 8px;
+    }
+
+    .slds-scope .slds-listbox__option .slds-truncate {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 10px;
+    }
+
+    .form-card.storeAddress .slds-form-element:last-child .slds-dropdown-trigger.slds-is-open .slds-dropdown {
+        height: 75px !important;
+        min-width: 130px;
+        margin-top: 9px !important;
+        margin-left: 15px !important;
+    }
+
+    .slds-scope .slds-media_small .slds-media__figure, .slds-scope .slds-media--small .slds-media__figure {
+        margin-right: .25rem;
+        margin-bottom: -12px;
+    }
+
+    .slds-scope .slds-has-error .slds-form-element__help {
+        font-size: 8px !important;
+        font-family: dunkinsansBook;
+    }
+
+    /* Menus*/
+    .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent[nfchatui-chatMsgComponent_chatMsgComponent] {
+        background: #fff;
+        color: #000000 !important;
+        border: none;
+        border-radius: 1px;
+        display: block;
+        padding: 10px;
+        width: 100%;
+        font-family: dunkinsansBook !important;
+        font-size: 12px;
+    }
+    .chat-content.menu[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent], .chat-content.quick-replies[nfchatui-chatMsgComponent_chatMsgComponent] .chatMessageContent:disabled[nfchatui-chatMsgComponent_chatMsgComponent] {
+        background-color: #fff!important;
+        border-color: #d3d3d3!important;
+        color: #d3d3d3!important;
+    }
+
+    /*store locator carousel*/
+    .slds-scope b, .slds-scope strong {
+        font-family: DunkinSansDisplay,DunkinSansBook,"Montserrat",sans-serif;
+        font-weight: 700;
+        color: #E60073;
+        font-size: inherit !important;
+        margin-left: 0px !important;
+        margin-right: 8px !important;
+    }
+    .carousel-container button.slds-button.slds-button_brand {
+        width: 150px;
+        height: auto;
+        white-space: nowrap;
+        font-size: 11px;
+        font-weight: bold;
+        font-stretch: normal;
+        letter-spacing: normal;
+        color: #ffffff;
+    }
+    .dot[nfchatui-einsteinBotComplexCarousel_einsteinBotComplexCarousel] {
+        background-color: rgba(230, 0, 115, 0.5) !important;
+         margin: 0px 2px !important;
+        height: 8px!important;
+        width: 8px !important;
+    }
+
+    /*close buttons*/
+    .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .layout[nfchatui-closeChatPrompt_closeChatPrompt] .buttons[nfchatui-closeChatPrompt_closeChatPrompt] .closeBtn[nfchatui-closeChatPrompt_closeChatPrompt] {
+        background: #e60073 !important;
+        border: 1px solid #e60073 !important;
+        border-radius: 30px!important;
+        font-family: dunkinsans!important;
+        font-size: 14px!important;
+        color: #ffffff !important;
+    }
+
+    /* store details form*/
+    .slds-scope .slds-textarea {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(217, 219, 221);
+        border-radius: .25rem;
+        width: 100%;
+        transition: border .1s linear,background-color .1s linear;
+        -webkit-appearance: none;
+        resize: vertical;
+        padding: .5rem .75rem;
+        margin-right: 30px;
+    }
+
+    .slds-scope .slds-dropdown-trigger_click.slds-is-open .slds-dropdown, .slds-scope .slds-dropdown-trigger--click.slds-is-open .slds-dropdown {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        width: 130px;
+        min-width: 130px;
+        margin-left: 16px;
+        margin-top: 10px;
+    }
+
+    /*cta icon*/
+    .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaIcon[nfchatui-chatWindow_chatWindow] img[nfchatui-chatWindow_chatWindow] {
+        height: 28px !important;
+        width: 28px !important;
+    }
+    .ctaIcon[nfchatui-chatwindow_chatwindow] {
+        width: 0px;
+        padding: 0px !important;
+        margin: 8px !important;
+    }
+
+    .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaIcon[nfchatui-chatWindow_chatWindow] img[nfchatui-chatWindow_chatWindow] {
+        margin-left: 0px !important;
+    }
+
+   .nfCTA[nfchatui-chatwindow_chatwindow] {
+       width: 45px;
+   }
+
+   .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaText[nfchatui-chatWindow_chatWindow] {
+       display: none;
+   }
+
+   .ctaClass[nfchatui-chatWindow_chatWindow]>.ctaIcon[nfchatui-chatWindow_chatWindow] img[nfchatui-chatWindow_chatWindow] {
+       height: 28px !important;
+       width: 28px !important;
+   }
+
+   /* close chat buttons*/
+   .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt], .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .slds-grid[nfchatui-closeChatPrompt_closeChatPrompt] {
+       height: 83.4vh !important;
+       border-bottom-left-radius: 8px;
+       border-bottom-right-radius: 8px;
+       max-height: 100vh !important;
+       padding: 10px;
+       display: block;
+   }
+   .closePrompt[nfchatui-closeChatPrompt_closeChatPrompt] .layout[nfchatui-closeChatPrompt_closeChatPrompt] .buttons[nfchatui-closeChatPrompt_closeChatPrompt] {
+       margin-top: -24px;
+   }
+
+    /*Date/time pciker */
+
+    /*
+   input::-webkit-date-and-time-value {
+        margin-right: 18px;
+        background-color: #FFFFFF !important;
+        border: solid 1px #cbccd0 !important;
+        box-shadow: 0px !important;
+        padding 0px !important;
+   }
+
+   .slds-scope .slds-input, .slds-scope .slds-input {
+       outline: 0;
+       border-color: rgb(255, 255, 255) !important;
+       background-color: rgb(255, 255, 255) !important;
+       box-shadow: 0 0 3px #ffffff !important;
+       border: solid 1px #cbccd0 !important;
+    }*/
+
+    /*mini cards*/
+    .title[nfchatui-einsteinBotMiniCard_einsteinBotMiniCard] {
+        padding: 0px !important;
+        font-size: 1px;
+    }
+
+    /*mini cards*/
+    .title[nfchatui-einsteinBotMiniCard_einsteinBotMiniCard] {
+        padding: 0px !important;
+        font-size: 1px;
+    }
+
+    img[nfchatui-einsteinbotminicard_einsteinbotminicard] {
+        margin-top: -4px;
+        height: 32px !important;
+        width: 32px !important;
+        padding: -2px !important;
+        max-width: none !important;
+        margin-left: -6px;
+        margin-bottom: -5px;
+        margin-right: 15px;
+    }
+
+    .slds-scope caption, .slds-scope th {
+        text-align: left;
+        font-family: dunkinsans !important;
+        color: #E60073 !important;
+        font-size: 14px !important;
+    }
+
+    /* ... */
+    .typing[nfchatui-userTyping_userTyping] {
+        background-color: #fff;
+        padding: 4px 0px 8px 6px !important;
+        border-radius: 8px 8px 8px 0;
+        box-shadow: 0 0 7px -5px;
+        display: inline;
+    }
+
+ }
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (max-width: 600px)
+    #snapin-1 > div.nfChat.custom > c-chat-footer > div > div.slds-grid.slds-p-top--small.slds-align--absolute-center.footerBar {
+        justify-content: left !important;
+    }
+
+    .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] .sendIconContainer[nfchatui-chatFooter_chatFooter] .sendIcon[nfchatui-chatFooter_chatFooter] {
+         position: absolute;
+         width: 30px;
+         height: 30px;
+         margin-left: 84% !important;
+         margin-top: -0.5% !important;
+         cursor: pointer;
+     }
+     .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] {
+         margin: 1px;
+         width: 70vw! important;
+     }
+}
+
+/*
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    @media only screen and (max-width: 600px)
+    #snapin-1 > div.nfChat.custom > c-chat-footer > div > div.slds-grid.slds-p-top--small.slds-align--absolute-center.footerBar {
+        justify-content: left !important;
+    }
+    .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] .sendIconContainer[nfchatui-chatFooter_chatFooter] .sendIcon[nfchatui-chatFooter_chatFooter] {
+         position: absolute;
+         width: 30px;
+         height: 30px;
+         margin-left: 84% !important;
+         margin-top: -0.5% !important;
+         cursor: pointer;
+     }
+     .chatFooter.custom[nfchatui-chatFooter_chatFooter] .footerBar[nfchatui-chatFooter_chatFooter] .row[nfchatui-chatFooter_chatFooter] {
+         margin: 1px;
+         width: 70vw! important;
+     }
+}

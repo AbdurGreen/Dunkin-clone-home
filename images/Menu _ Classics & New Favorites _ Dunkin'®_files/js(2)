@@ -1,0 +1,730 @@
+(function () {
+  'use strict';
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+    if (null != _i) {
+      var _s,
+        _e,
+        _x,
+        _r,
+        _arr = [],
+        _n = !0,
+        _d = !1;
+      try {
+        if (_x = (_i = _i.call(arr)).next, 0 === i) {
+          if (Object(_i) !== _i) return;
+          _n = !1;
+        } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0);
+      } catch (err) {
+        _d = !0, _e = err;
+      } finally {
+        try {
+          if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return;
+        } finally {
+          if (_d) throw _e;
+        }
+      }
+      return _arr;
+    }
+  }
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends.apply(this, arguments);
+  }
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+    return arr2;
+  }
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var getFrameDepth = function getFrameDepth(win) {
+    win = win || window;
+    if (win === win.top) {
+      return 0;
+    }
+    return 1 + getFrameDepth(win.parent);
+  };
+  var getTopAncestorOrigin = function getTopAncestorOrigin(win) {
+    win = win || window;
+    var ancestorOrigins = win.location && win.location.ancestorOrigins;
+    if (win && ancestorOrigins && ancestorOrigins.length > 1) {
+      if (Array.isArray(ancestorOrigins)) {
+        return ancestorOrigins.pop();
+      }
+      return ancestorOrigins.item(ancestorOrigins.length - 1);
+    }
+    return null;
+  };
+  var getCanonicalUrl = function getCanonicalUrl(win) {
+    win = win || window;
+    var canonicalUrlLink = win.document.querySelector('link[rel=canonical]');
+    return canonicalUrlLink ? canonicalUrlLink.href : null;
+  };
+  var findBestUrl = function findBestUrl(frameDepth, win) {
+    win = win || window;
+    var doc = win.document;
+    if (typeof frameDepth !== 'number' || frameDepth < 0) {
+      frameDepth = getFrameDepth(win);
+    }
+    if (frameDepth === 0) {
+      return getCanonicalUrl(win) || doc.location.href;
+    } else if (frameDepth === 1) {
+      try {
+        var parentHref = win.parent.document.location.href;
+        if (parentHref) {
+          return parentHref;
+        }
+      } catch (ex) {
+        var referrer = doc.referrer;
+        if (referrer) {
+          return referrer;
+        }
+      }
+    } else if (frameDepth === 2) {
+      try {
+        var parentReferrer = win.parent.document.referrer;
+        if (parentReferrer) {
+          return parentReferrer;
+        }
+      } catch (ex) {}
+    }
+    return getTopAncestorOrigin(win) || '';
+  };
+
+  function discover() {
+    var win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+    var frameDepth = arguments.length > 1 ? arguments[1] : undefined;
+    var doc = win.document;
+    var isPresent = win.dtm_config;
+    var config1;
+    if (isPresent) {
+      config1 = _extends({}, win.dtm_config);
+      Object.keys(config1).forEach(function (k) {
+        return (config1[k] == null || config1[k] === '') && delete config1[k];
+      });
+    } else {
+      config1 = {};
+    }
+    config1.data_object_type_code = isPresent ? 1 : 0;
+    config1.location_search = doc.location.search || '';
+    config1.canonical_url = findBestUrl(frameDepth, win);
+    config1.dtmc_ref = doc.referrer || '';
+    config1.dtmc_loc = doc.location.href || '';
+    return config1;
+  }
+
+  var getValueFromQueryString = function getValueFromQueryString(key, search) {
+    if (!search) {
+      return '';
+    }
+    var querystring = search.substring(1);
+    var items = querystring.split('&');
+    var filtered = items.map(function (item) {
+      var itemList = item.split('=');
+      return {
+        key: itemList[0],
+        value: itemList[1]
+      };
+    }).filter(function (kvp) {
+      return kvp.key.toLowerCase() === key.toLowerCase();
+    });
+    if (filtered.length) {
+      return filtered[0].value;
+    }
+    return '';
+  };
+  var serializeDataToQuery = function serializeDataToQuery(dataObject) {
+    var parts = [],
+      key,
+      value;
+    for (key in dataObject) {
+      if (dataObject.hasOwnProperty(key)) {
+        value = dataObject[key] + '' || '';
+        parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      }
+    }
+    return parts.join('&');
+  };
+  var buildUrlForPlugin = function buildUrlForPlugin(pluginName, hostName, path, dtmConfig, integration) {
+    var plugin = integration.plugins[pluginName];
+    if (!plugin) {
+      console.error('Missing plugin name');
+      return null;
+    }
+    var queryStringObj = {};
+    var fieldMasks = integration.fieldMasks.concat(plugin.fieldMasks);
+    _extends(queryStringObj, dtmConfig);
+    fieldMasks.forEach(function (fieldMask) {
+      delete queryStringObj[fieldMask];
+    });
+    var env = integration.env;
+    var pluginUrl = "".concat(env.tagProto, "://").concat(hostName).concat(path);
+    queryStringObj.dtm_cookies_enabled = navigator.cookieEnabled;
+    if (dtmConfig.wl_override) {
+      queryStringObj.wl_override = '';
+    } else if (dtmConfig.dtm_wl_override) {
+      queryStringObj.dtm_wl_override = '';
+    }
+    var queryStrings = serializeDataToQuery(queryStringObj);
+    return "".concat(pluginUrl).concat(queryStrings.length ? '?' : '').concat(queryStrings);
+  };
+
+  var applyStaticParameters = function applyStaticParameters(dtmConfig, overrideParams) {
+    _extends(dtmConfig, overrideParams);
+  };
+  var resolve = function resolve(path, obj, separator) {
+    obj = obj || self;
+    separator = separator || '.';
+    var properties = Array.isArray(path) ? path : path.split(separator);
+    var value = properties.reduce(function (prev, curr) {
+      return prev && prev[curr];
+    }, obj);
+    if (value === null || value === undefined) {
+      return '';
+    }
+    return value;
+  };
+  var resolveForType = function resolveForType(mapping, dtmConfig) {
+    if (mapping.type.toUpperCase() === 'QUERYSTRING') {
+      var keys = mapping.source.split('.');
+      if (keys.length === 2) {
+        var sourceName = keys[0];
+        return resolve(sourceName, dtmConfig);
+      }
+      return '';
+    } else if (mapping.type.toUpperCase() === 'URLENCODE') {
+      return resolve(mapping.source, dtmConfig);
+    } else if (mapping.type.toUpperCase() === 'JSONURLENCODE') {
+      return resolve(mapping.source, dtmConfig);
+    }
+    return resolve(mapping.source, dtmConfig);
+  };
+  var transform = function transform(dtmConfig, mapping) {
+    var value = resolveForType(mapping, dtmConfig);
+    if (mapping.type.toUpperCase() === 'QUERYSTRING') {
+      var keys = mapping.source.split('.');
+      if (keys.length === 2) {
+        var queryStringName = keys[1];
+        var qsValue = getValueFromQueryString(queryStringName, value);
+        if (qsValue !== '') {
+          dtmConfig[mapping.destination] = qsValue;
+        }
+      }
+    } else if (mapping.type.toUpperCase() === 'URLENCODE') {
+      var encodedValue = encodeURIComponent(value);
+      if (encodedValue !== '') {
+        dtmConfig[mapping.destination] = encodedValue;
+      }
+    } else if (mapping.type.toUpperCase() === 'JSONURLENCODE') {
+      var json = JSON.stringify(value);
+      var encodedJson = encodeURIComponent(json);
+      if (encodedJson !== '') {
+        dtmConfig[mapping.destination] = encodedJson;
+      }
+    } else {
+      if (value !== '') {
+        dtmConfig[mapping.destination] = value;
+      }
+    }
+  };
+  var applyMappings = function applyMappings(dtmConfig, mappings) {
+    mappings.forEach(function (m) {
+      return transform(dtmConfig, m);
+    });
+  };
+
+  function assign (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        target[key] = source[key];
+      }
+    }
+    return target
+  }
+  var defaultConverter = {
+    read: function (value) {
+      if (value[0] === '"') {
+        value = value.slice(1, -1);
+      }
+      return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent)
+    },
+    write: function (value) {
+      return encodeURIComponent(value).replace(
+        /%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g,
+        decodeURIComponent
+      )
+    }
+  };
+  function init (converter, defaultAttributes) {
+    function set (name, value, attributes) {
+      if (typeof document === 'undefined') {
+        return
+      }
+      attributes = assign({}, defaultAttributes, attributes);
+      if (typeof attributes.expires === 'number') {
+        attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+      }
+      if (attributes.expires) {
+        attributes.expires = attributes.expires.toUTCString();
+      }
+      name = encodeURIComponent(name)
+        .replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent)
+        .replace(/[()]/g, escape);
+      var stringifiedAttributes = '';
+      for (var attributeName in attributes) {
+        if (!attributes[attributeName]) {
+          continue
+        }
+        stringifiedAttributes += '; ' + attributeName;
+        if (attributes[attributeName] === true) {
+          continue
+        }
+        stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+      }
+      return (document.cookie =
+        name + '=' + converter.write(value, name) + stringifiedAttributes)
+    }
+    function get (name) {
+      if (typeof document === 'undefined' || (arguments.length && !name)) {
+        return
+      }
+      var cookies = document.cookie ? document.cookie.split('; ') : [];
+      var jar = {};
+      for (var i = 0; i < cookies.length; i++) {
+        var parts = cookies[i].split('=');
+        var value = parts.slice(1).join('=');
+        try {
+          var found = decodeURIComponent(parts[0]);
+          jar[found] = converter.read(value, found);
+          if (name === found) {
+            break
+          }
+        } catch (e) {}
+      }
+      return name ? jar[name] : jar
+    }
+    return Object.create(
+      {
+        set,
+        get,
+        remove: function (name, attributes) {
+          set(
+            name,
+            '',
+            assign({}, attributes, {
+              expires: -1
+            })
+          );
+        },
+        withAttributes: function (attributes) {
+          return init(this.converter, assign({}, this.attributes, attributes))
+        },
+        withConverter: function (converter) {
+          return init(assign({}, this.converter, converter), this.attributes)
+        }
+      },
+      {
+        attributes: { value: Object.freeze(defaultAttributes) },
+        converter: { value: Object.freeze(converter) }
+      }
+    )
+  }
+  var api = init(defaultConverter, { path: '/' });
+
+  var daysIn13Months = 395;
+  var secondsPerDay = 24 * 60 * 60;
+  var millisecondsPerSecond = 1000;
+  var PATH_PREFIX = '/profile/visit/';
+  var EXP_SUFFIX = '_exp';
+  var EventType = {
+    DISCO: 'disco',
+    FINAL: 'final'
+  };
+  var Parameters = {
+    CLEAR_TAG_FLAG: 'clear_tag_flag'
+  };
+  var FP_ASSIGNMENT_TYPE = 'fp_assignment_type';
+
+  var getCookie = function getCookie(name) {
+    try {
+      return api.get(name) || null;
+    } catch (e) {
+      return null;
+    }
+  };
+  var setCookie = function setCookie(name, value, age, domain, sameSite) {
+    age = age || 5 * daysIn13Months * secondsPerDay;
+    sameSite = sameSite || 'lax';
+    var cookieValue;
+    var cookieConfig = {
+      'expires': new Date(Date.now() + age * millisecondsPerSecond),
+      'sameSite': sameSite,
+      secure: true,
+      'path': '/'
+    };
+    if (domain) {
+      cookieConfig.domain = domain;
+    } else {
+      return;
+    }
+    cookieValue = api.set(name, value, cookieConfig);
+    return cookieValue;
+  };
+
+  function removeStorageItem(key, type) {
+    type = type || 'localStorage';
+    try {
+      var storage = window[type];
+      storage.removeItem(key + EXP_SUFFIX);
+      storage.removeItem(key);
+      return true;
+    } catch (e) {
+      console.debug(e);
+      return false;
+    }
+  }
+  function getStorageItem(key, type) {
+    type = type || 'localStorage';
+    var val = null;
+    try {
+      var storage = window[type];
+      var expVal = storage.getItem(key + EXP_SUFFIX);
+      if (!expVal) {
+        val = storage.getItem(key);
+      } else {
+        var expDate = new Date(expVal);
+        var isValid = expDate.getTime() - Date.now() > 0;
+        if (isValid) {
+          val = storage.getItem(key);
+        } else {
+          removeStorageItem(key);
+        }
+      }
+    } catch (e) {
+      console.debug(e);
+    }
+    return val;
+  }
+  function setStorageItem(key, val, expires, type) {
+    type = type || 'localStorage';
+    try {
+      var storage = window[type];
+      if (expires !== undefined) {
+        var expStr = new Date(Date.now() + expires * millisecondsPerSecond).toUTCString();
+        storage.setItem(key + EXP_SUFFIX, expStr);
+      }
+      storage.setItem(key, val);
+    } catch (e) {
+      console.debug(e);
+      return false;
+    }
+    return true;
+  }
+
+  var preferPersistedValueForThese = ['dtm_token', 'dtm_token_sc'];
+  var isValidValue = function isValidValue(val) {
+    return val !== 'undefined' && val !== undefined && val !== null && val !== '';
+  };
+  function getValue(key, mode) {
+    var serverSetCookie = getCookie("".concat(key, "_sc")) || '';
+    var localStorage = getStorageItem(key, 'localStorage') || '';
+    var sessionStorage = getStorageItem(key, 'sessionStorage') || '';
+    var documentCookie = getCookie(key) || '';
+    var getBestValue = function getBestValue() {
+      if (isValidValue(serverSetCookie)) {
+        return serverSetCookie;
+      }
+      if (isValidValue(localStorage)) {
+        return localStorage;
+      }
+      if (isValidValue(sessionStorage)) {
+        return sessionStorage;
+      }
+      if (isValidValue(documentCookie)) {
+        return documentCookie;
+      }
+      return '';
+    };
+    var getBestPersistedValue = function getBestPersistedValue() {
+      if (isValidValue(localStorage)) {
+        return localStorage;
+      }
+      if (isValidValue(sessionStorage)) {
+        return sessionStorage;
+      }
+      if (isValidValue(documentCookie)) {
+        return documentCookie;
+      }
+      return '';
+    };
+    if (mode === 'all') {
+      return {
+        serverSetCookie: serverSetCookie,
+        localStorage: localStorage,
+        sessionStorage: sessionStorage,
+        documentCookie: documentCookie
+      };
+    }
+    if (mode === 'preferPersisted') {
+      return getBestPersistedValue();
+    }
+    return getBestValue();
+  }
+  function getValues(target, integration) {
+    if (integration.persistence) {
+      integration.persistence.forEach(function (entry) {
+        if (preferPersistedValueForThese.includes(entry.key)) {
+          var oldValue = getValue(entry.key, 'preferPersisted');
+          if (isValidValue(oldValue)) {
+            target[entry.key] = oldValue;
+            if (integration.eventType === EventType.DISCO) {
+              target[FP_ASSIGNMENT_TYPE] = 1;
+            }
+          }
+        } else {
+          var _oldValue = getValue(entry.key, 'best');
+          var newValue = target[entry.key];
+          if (!isValidValue(newValue)) {
+            if (isValidValue(_oldValue)) {
+              target[entry.key] = _oldValue;
+            } else if (isValidValue(entry.value)) {
+              target[entry.key] = entry.value;
+            }
+          }
+        }
+      });
+    }
+  }
+  function setValue(key, value, ageInSeconds, environment) {
+    setStorageItem(key, value, ageInSeconds, 'localStorage');
+    setStorageItem(key, value, ageInSeconds, 'sessionStorage');
+    setCookie(key, value, ageInSeconds, environment.cookieDomain);
+  }
+  function setValues(target, integration) {
+    var setPersistenceValue = function setPersistenceValue(integrationVal) {
+      if (target[integrationVal.key]) {
+        setValue(integrationVal.key, target[integrationVal.key], integrationVal.expires * secondsPerDay, integration.env);
+      }
+    };
+    if (integration.persistence) {
+      integration.persistence.forEach(setPersistenceValue);
+    }
+  }
+
+  var createScript = function createScript(url, nonceValue, onLoadHandler, onErrorHandler) {
+    var script = document.createElement('script');
+    script.src = url;
+    script.nonce = nonceValue;
+    script.onload = onLoadHandler;
+    script.onerror = onErrorHandler;
+    return script;
+  };
+  var firePixel = function firePixel(url, onLoadHandler, onErrorHandler, referrerPolicy) {
+    var img = new Image(1, 1);
+    img.className = 'cnvr-pixel';
+    img.style.cssText = 'display:none';
+    if (typeof onLoadHandler === 'function') {
+      img.onload = onLoadHandler;
+    }
+    if (typeof onErrorHandler === 'function') {
+      img.onerror = onErrorHandler;
+    }
+    if (referrerPolicy) {
+      img.setAttribute('referrerPolicy', referrerPolicy);
+      img.referrerPolicy = referrerPolicy;
+    }
+    img.src = url;
+    img.alt = '';
+    return img;
+  };
+  var firePixels = function firePixels(urls, referrerPolicy) {
+    var pixelArr = [];
+    urls.forEach(function (url) {
+      pixelArr.push(firePixel(url, null, null, referrerPolicy));
+    });
+    return pixelArr;
+  };
+  var addScriptElement = function addScriptElement(embeddedScript, formUid) {
+    var scriptElement = document.createElement('script');
+    var srcInAttributes = false;
+    scriptElement.setAttribute('id', formUid.toString());
+    if (embeddedScript.attributeMap) {
+      var attributeMap = embeddedScript.attributeMap;
+      for (var _i = 0, _Object$entries = Object.entries(attributeMap); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          key = _Object$entries$_i[0],
+          value = _Object$entries$_i[1];
+        if (key === 'src') {
+          srcInAttributes = true;
+        }
+        scriptElement.setAttribute(key, value);
+      }
+    }
+    if (embeddedScript.codeSnippet && !srcInAttributes) {
+      scriptElement.textContent = embeddedScript.codeSnippet;
+    }
+    if (scriptElement.hasAttribute('src') || scriptElement.textContent) {
+      document.head.appendChild(scriptElement);
+    }
+  };
+
+  var createPluginScript = function createPluginScript(dtmConfig, integration) {
+    var env = integration.env;
+    var url = buildUrlForPlugin('cnvr', env.tagHost, env.tagPath, dtmConfig, integration);
+    return createScript(url, dtmConfig.nonce);
+  };
+  var generateAndFireFpcPixel = function generateAndFireFpcPixel(dtmConfig, integration) {
+    var env = integration.env;
+    if (!env.fpcTagWrite && (!env.fpcAgilityIdWrite || !dtmConfig.dtm_user_id) || !navigator.cookieEnabled) {
+      return '';
+    }
+    var wlDomainsKey = '';
+    if (dtmConfig.wl_domains_key) {
+      wlDomainsKey = dtmConfig.wl_domains_key;
+    }
+    var wlOverrideDomain = '';
+    if (dtmConfig.wl_override || dtmConfig.dtm_wl_override) {
+      if (dtmConfig.wl_override) {
+        wlOverrideDomain = dtmConfig.wl_override;
+      } else {
+        wlOverrideDomain = dtmConfig.dtm_wl_override;
+      }
+    }
+    var baseUrl = "".concat(env.cookieProto, "://").concat(env.cookieHost).concat(env.cookiePath, "?dtm_cid=").concat(dtmConfig.dtm_cid, "&dtm_cmagic=").concat(dtmConfig.dtm_cmagic, "&ver=2&dtm_form_uid=").concat(dtmConfig.dtm_form_uid, "&wl_domains_key=").concat(wlDomainsKey, "&wl_override=").concat(wlOverrideDomain);
+    var serverPersistValues = Array.isArray(integration.persistence) ? integration.persistence.filter(function (entry) {
+      return entry.context === 'server';
+    }) : [];
+    var queryParamList = [];
+    serverPersistValues.forEach(function (entry) {
+      var key = entry.key;
+      var value = dtmConfig[key];
+      if (typeof value !== 'undefined') {
+        queryParamList.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      }
+    });
+    var pixelUrl = queryParamList.length > 0 ? "".concat(baseUrl, "&").concat(queryParamList.join('&')) : '';
+    firePixel(pixelUrl);
+    return pixelUrl;
+  };
+  var disco = function disco(dtmConfig, integration) {
+    var pluginScript = createPluginScript(dtmConfig, integration);
+    document.head.appendChild(pluginScript);
+    generateAndFireFpcPixel(dtmConfig, integration);
+  };
+  var final = function final(dtmConfig, integration) {
+    var referrerLimitedPixels = integration.referrerLimitedPixels;
+    var nonReferrerLimitedPixels = integration.pixels;
+    var embeddedScript = integration.embeddedScript;
+    if (Array.isArray(referrerLimitedPixels) && referrerLimitedPixels.length > 0) {
+      firePixels(integration.referrerLimitedPixels, 'same-origin');
+    }
+    if (Array.isArray(nonReferrerLimitedPixels) && nonReferrerLimitedPixels.length > 0) {
+      firePixels(integration.pixels);
+    }
+    if (embeddedScript) {
+      addScriptElement(integration.embeddedScript, integration.parameters.dtm_form_uid);
+    }
+  };
+  var cnvrPlugin = {
+    disco: disco,
+    final: final
+  };
+
+  var plugins = {
+    cnvr: cnvrPlugin
+  };
+  function execute(dtmConfig, integration) {
+    for (var _i = 0, _Object$entries = Object.entries(integration.plugins); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        plugin = _Object$entries$_i[1];
+      var pluginState = {};
+      _extends(pluginState, dtmConfig);
+      applyMappings(pluginState, plugin.mappings);
+      if (integration.eventType === EventType.DISCO) {
+        plugins[key].disco(pluginState, integration);
+      }
+      if (integration.eventType === EventType.FINAL) {
+        plugins[key].final(pluginState, integration);
+      }
+    }
+  }
+  function executePlugins(dtmConfig, integration) {
+    integration.eventType = integration.eventType || EventType.DISCO;
+    execute(dtmConfig, integration);
+  }
+
+  function deleteTag() {
+    var scriptElement = document.currentScript;
+    if (scriptElement && scriptElement.src.toLowerCase().includes(PATH_PREFIX)) {
+      scriptElement.parentNode.removeChild(scriptElement);
+    }
+  }
+  function cleanupScript(integration) {
+    var parameters = integration.parameters;
+    if (parameters) {
+      if (parameters.hasOwnProperty(Parameters.CLEAR_TAG_FLAG)) {
+        var clearTagFlag = parameters[Parameters.CLEAR_TAG_FLAG];
+        if (clearTagFlag) {
+          deleteTag();
+        }
+      }
+    }
+  }
+
+  var integration = JSON.parse('{"eventType":"final","env":{"tagProto":"https","tagHost":"login-ds.dotomi.com","tagPath":"/profile/visit/final/js","fpcWrite":true,"fpcRead":true,"fpcTagWrite":true,"fpcAgilityIdWrite":false,"cookieHost":"www.dunkindonuts.com","cookieProto":"https","cookiePath":"/profile/set/fpc/px","cookieDomain":".dunkindonuts.com","cookieTagType":null},"parameters":{"wl_domains_key":"www%2Edunkindonuts%2Ecom","dtm_form_uid":"160607186369157637","dtm_token":"AQEAzk1zNRnSpwEder-wAQEBAQA","fp_assignment_type":"1","tcflag":"true"},"mappings":[{"conditionTree":null,"scope":"Client","source":"dtm_promo_id","destination":"cli_promo_id","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"items","destination":"dtm_items","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"dtmc_items","destination":"dtm_items","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"dtm_items","destination":"dtm_items","type":"JSONURLENCODE","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"coupons","destination":"dtmc_coupons","type":"JSONURLENCODE","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"bypass_channel","destination":"dtmc_bypass_channel","type":"JSONURLENCODE","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1}],"persistence":[{"key":"dtm_status","expires":395,"context":null,"destination":null,"value":null},{"key":"dtm_token","expires":395,"context":"server","destination":null,"value":null},{"key":"dtm_tcdata","expires":1,"context":null,"destination":null,"value":null},{"key":"dtm_persisted_em","expires":395,"context":"client","destination":null,"value":null}],"fieldMasks":["location_search","coupons","items","bypassChannel"],"plugins":{"cnvr":{"name":"cnvr","parameters":{},"mappings":[{"conditionTree":null,"scope":"Client","source":"location_search.dtm_em","destination":"dtm_email_hash","type":"QUERYSTRING","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"email_hash","destination":"dtm_email_hash","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"confirmation_number","destination":"dtmc_transaction_id","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1},{"conditionTree":null,"scope":"Client","source":"dtm_promo_id","destination":"cli_promo_id","type":"NAME","paused":false,"cnvrEnabled":false,"cjEnabled":false,"index":-1}],"fieldMasks":["confirmation_number","email_hash"],"data":null}},"referrerLimitedPixels":["https://match.adsrvr.org/track/cmf/generic?ttd_pid=6szhitj&ttd_tpi=1&gdpr_consent=","https://simage2.pubmatic.com/AdServer/Pug?vcode=bz0yJnR5cGU9MSZjb2RlPTQ2MSZ0bD0xNTc2ODAw&piggybackCookie=AQELNGeetOrSSQIiJLsrAQENqwE&gdpr_consent=","https://login.dotomi.com/match/bounce/current?networkId=41440&version=1&nuid=AQELNGeetOrSSQIiJLsrAQENqwE&gdpr_consent=","https://cms.analytics.yahoo.com/cms?partner_id=PCLOUD&_hosted_id=AQELNGeetOrSSQIiJLsrAQENqwE&gdpr_consent=","https://partners.tremorhub.com/sync?UIDT=AQELNGeetOrSSQIiJLsrAQENqwE&gdpr_consent=","https://bh.contextweb.com/bh/rtset?do=add&pid=530912&ev=AQELNGeetOrSSQIiJLsrAQENqwE&gdpr_consent=","https://us-u.openx.net/w/1.0/cm?id=f9869243-40dc-4b34-9e8b-8d6529649f0f&ph=bec2690e-a73d-4d95-9901-75ad2a8d91b8&r=https%3A%2F%2Fmatch.sync.ad.cpe.dotomi.com%2Fw%2Fuser.sync%3Fptrid%3D7%26userid%3D{OPENX_ID}&gdpr_consent=","https://image8.pubmatic.com/AdServer/ImgSync?p=158100&gdpr_consent=&sec=1&pu=https%3A%2F%2Fimage4.pubmatic.com%2FAdServer%2FSPug%3Fp%3D158100%26pmc%3DPM_PMC%26sec%3D1%26pr%3Dhttps%253A%252F%252Fmatch.sync.ad.cpe.dotomi.com%252Fw%252Fuser.sync%253Fptrid%253D10%2526userid%253D%2523PMUID"],"pixels":["https://login.dotomi.com/ucm/DMCSuccessLogger?dtmid=735606950282908488&sessionid=1692485675651&comId=3242&dtm_command_op_date=1692637966576&uniqueid=160607186369157637"],"embeddedScript":null}');
+  var discoveredDtmConfig = discover();
+  var dtmConfig = {};
+  if (integration.parameters) {
+    var decodedParameters = {};
+    Object.entries(integration.parameters).forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+      try {
+        decodedParameters[decodeURIComponent(key)] = decodeURIComponent(value);
+      } catch (err) {}
+    });
+    applyStaticParameters(dtmConfig, decodedParameters);
+  }
+  applyStaticParameters(dtmConfig, discoveredDtmConfig);
+  if (integration.env.fpcRead) {
+    getValues(dtmConfig, integration);
+  }
+  applyMappings(dtmConfig, integration.mappings);
+  executePlugins(dtmConfig, integration);
+  if (integration.env.fpcWrite) {
+    setValues(dtmConfig, integration);
+  }
+  cleanupScript(integration);
+
+})();

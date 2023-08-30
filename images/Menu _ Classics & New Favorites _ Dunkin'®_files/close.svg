@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Icons / Utility Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.725,12.925 L22.225,6.375 C22.525,6.075 22.525,5.625 22.225,5.325 L21.225,4.275 C20.925,3.975 20.475,3.975 20.175,4.275 L13.625,10.825 C13.425,11.025 13.125,11.025 12.925,10.825 L6.375,4.225 C6.075,3.925 5.625,3.925 5.325,4.225 L4.275,5.275 C3.975,5.575 3.975,6.025 4.275,6.325 L10.825,12.875 C11.025,13.075 11.025,13.375 10.825,13.575 L4.225,20.175 C3.925,20.475 3.925,20.925 4.225,21.225 L5.275,22.275 C5.575,22.575 6.025,22.575 6.325,22.275 L12.875,15.725 C13.075,15.525 13.375,15.525 13.575,15.725 L20.125,22.275 C20.425,22.575 20.875,22.575 21.175,22.275 L22.225,21.225 C22.525,20.925 22.525,20.475 22.225,20.175 L15.725,13.625 C15.525,13.425 15.525,13.125 15.725,12.925 L15.725,12.925 Z" id="path-1"></path>
+    </defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-4.000000, -4.000000)">
+            <g id="Icons-/-Utility-Icon">
+                <rect id="Rectangle" x="0" y="0" width="26" height="26"></rect>
+                <g id="Icons-/-z-nested-/-icon-glyphs-/-utility-/close">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="🎨-Color" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <g id="Icons-/-z-nested-/Icon-color/White" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
+                        <g transform="translate(-1.000000, -1.000000)" id="color">
+                            <rect x="0" y="0" width="28" height="28"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

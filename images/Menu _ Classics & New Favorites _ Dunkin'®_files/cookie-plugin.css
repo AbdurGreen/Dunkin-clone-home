@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+/* Consent CSS */
+/* Color palette */
+:root {
+    --white: #ffffff;
+    --gray: #565656;
+    --stone: #999999;
+    --accent-reduced:#8f18ad;
+    --accent:#8f18ad;
+    --light: #fafafa;
+    --primaryButtonColor: #8f18ad;
+    --secondaryButtonColor : #565656;
+}
+
+@font-face {
+    font-family: "truyo-icons";
+    src:url("/static/truyo-icons.eot");
+    src: url("/static/truyo-icons.eot") format("embedded-opentype"),
+    url("/static/truyo-icons.woff") format("woff"),
+    url("/static/truyo-icons.ttf") format("truetype"),
+    url("/static/truyo-icons.svg#truyo-icons") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.truyoConsentCookieSettings p,
+.cookiePolicyContainer p {
+    line-height: 1.5;
+    margin: 14px 0 !important;
+}
+
+.truyoConsentCookieSettings * {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 14px;
+}
+
+#truyo-consent-module.sticky-footer * {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.truyoConsentCookieSettings h4,
+.truyoConsentCookieSettings h5,
+.cookiePolicyContainer h4,
+.cookiePolicyContainer h5,
+.cookiePolicyContainer h6 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.truyoConsentCookieSettings h4,
+.cookiePolicyContainer h4 {
+    font-size: 24px !important;
+}
+
+.truyoConsentCookieSettings h5,
+.cookiePolicyContainer h5 {
+    font-size: 20px !important;
+}
+
+.cookiePolicyContainer h6 {
+    font-size: 16px !important;
+}
+
+.truyoConsentCookieSettings .width-100 {
+    width: 100% !important;
+}
+
+.truyoConsentCookieSettings .text-align-center {
+    text-align: center !important;
+}
+
+.truyoConsentCookieSettings .text-align-right {
+    text-align: right !important;
+}
+
+.truyoConsentCookieSettings .ml-5 {
+    margin-left: 48px !important;
+}
+
+.truyoConsentCookieSettings .mr-5 {
+    margin-right: 5px !important;
+}
+
+.truyoConsentCookieSettings .d-none {
+    display: none !important;
+}
+
+#truyo-consent-module.sticky-footer.d-flex,
+.truyoConsentCookieSettings .d-flex {
+    display: flex;
+}
+
+#truyo-consent-module.sticky-footer.justify-content-between {
+    justify-content: space-between;
+}
+
+#truyo-consent-module.sticky-footer .text-decoration-none {
+    text-decoration: none !important;
+}
+
+#truyo-consent-module.sticky-footer .text-decoration-underline {
+    text-decoration: underline !important;
+}
+
+.truyoConsentCookieSettings.fade-in {
+    opacity: 1;
+    animation-name: truyoFadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.4s;
+}
+
+@keyframes truyoFadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#truyo-consent-module.sticky-footer {
+    left: 0;
+    bottom: 0;
+    color: #565656;
+    position: fixed;
+    font-size: 14px;
+    padding: 12px !important;
+    text-align: center;
+    background: #f5f5f5;
+    width: 100% !important;
+    font-family: 'Roboto', sans-serif !important;
+    box-sizing: border-box;
+    z-index: 1049 !important;
+}
+
+#truyo-consent-module.sticky-footer button:hover {
+    opacity: 0.6;
+}
+
+#truyo-consent-module.sticky-footer button {
+    width: 80px;
+    height: auto;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 8px !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.truyoConsentCookieSettings .pl-0 {
+    padding-left: 0 !important;
+}
+
+.truyoConsentCookieSettings .align-items-center {
+    align-items: center;
+}
+
+.truyoConsentCookieSettings {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* Tab Bar */
+.truyoConsentCookieSettings *,
+.truyoConsentCookieSettings *::before,
+.truyoConsentCookieSettings *::after {
+    box-sizing: border-box;
+}
+
+.truyoConsentCookieSettings .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.truyoConsentCookieSettings .col-3,
+.truyoConsentCookieSettings .col-9 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.truyoConsentCookieSettings .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.truyoConsentCookieSettings .col-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.truyoConsentCookieSettings .cookieSettingsContainer {
+    border: 1px solid #ddd;
+}
+
+.truyoConsentCookieSettings .tab-bar {
+    height: 320px;
+    overflow: auto !important;
+    background-color: #8f18ad;
+}
+
+.truyoConsentCookieSettings .tab-bar a {
+    color: #ffffff;
+    display: block;
+    font-size: 14px;
+    padding: 6px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.truyoConsentCookieSettings .tab-bar a.active {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.truyoConsentCookieSettings .tab-bar a:hover {
+    color: #565656 !important;
+    background-color: #f5f5f5 !important;
+}
+
+.truyoConsentCookieSettings .tab-pane-container .tab-pane {
+    display: none;
+    padding-top: 24px;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.truyoConsentCookieSettings .tab-pane-container .tab-pane p {
+    color: var(--gray);
+}
+
+.truyoConsentCookieSettings .tab-pane-container .tab-pane.active {
+    display: block;
+}
+
+/* Modal */
+.truyoConsentCookieSettings.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147483699!important;
+    display: none;
+    /* width: 100% !important; */
+    width: 100%;
+    /* height: 100% !important; */
+    height: 100% ;
+    outline: 0;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    max-width: 100% !important;
+}
+
+.truyoConsentCookieSettings.modal.show {
+    display: block;
+}
+
+.truyoConsentCookieSettings .modal-dialog {
+    max-width: 1140px;
+    margin: 28px auto;
+    background-color: #ffffff;
+}
+
+.truyoConsentCookieSettings .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 25px 40px 16px;
+}
+
+.truyoConsentCookieSettings .modal-body {
+    padding: 25px 40px 40px;
+}
+
+.truyoConsentCookieSettings .modal-header .close {
+    cursor: pointer;
+    line-height: 0.6;
+    font-size: 42px !important;
+}
+
+.truyoConsentCookieSettings .modal-footer {
+    background-color: #fafafa;
+    display: flex !important;
+}
+
+.truyoConsentCookieSettings .modal-footer a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    height: 36px;
+    width: 130px;
+}
+
+.truyoConsentCookieSettings .cookieSettingsModalForm .cookieSettingsModalFormSubmit {
+    /* padding: 9px 70px !important; */
+    height: unset;
+    line-height: unset;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: 0px;
+    padding-left: 0px;
+    padding-right: 1px;
+    width: 68px;
+}
+
+/* Buttons */
+.cookiePolicyContainer .btn,
+.truyoConsentCookieSettings .btn {
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    line-height: 1.5;
+    font-size: 14px;
+    height: 36px;
+    /* width: 80px; was 130px */
+}
+
+.cookieSettingButton {
+    margin-right:5px;
+}
+
+.cookiePolicyContainer .btn-primary
+{
+    color: #fff;
+    background-color: var(--primaryButtonColor);
+    border-color: var(--primaryButtonColor);
+    text-transform: unset !important;
+    border-radius: unset !important;
+    letter-spacing: normal !important;
+}
+
+#truyo-consent-module.sticky-footer .btn-primary,
+.truyoConsentCookieSettings .btn-primary {
+    color: #fff;
+    background-color: var(--primaryButtonColor);
+    border-color: var(--primaryButtonColor);
+    text-transform: unset ;
+    border-radius: unset ;
+    letter-spacing: normal ;
+}
+
+#truyo-consent-module.sticky-footer .btn-secondary,
+.truyoConsentCookieSettings .btn-secondary {
+    color: #fff;
+    background-color: var(--secondaryButtonColor);
+    border-color: var(--secondaryButtonColor);
+    text-transform: unset ;
+    border-radius: unset ;
+    letter-spacing: normal ;
+    /* text-transform: unset !important; */
+    /* border-radius: unset !important; */
+    /* letter-spacing: normal !important; */
+}
+
+
+.cookiePolicyContainer .btn-primary:disabled,
+#truyo-consent-module.sticky-footer .btn-primary:disabled,
+#truyo-consent-module.sticky-footer .btn-secondary:disabled,
+.truyoConsentCookieSettings .btn-primary:disabled,
+.truyoConsentCookieSettings .btn-secondary:disabled {
+    opacity: .65;
+}
+
+.truyoConsentCookieSettings .modal-footer a {
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Table */
+.truyoConsentCookieSettings .table,
+.cookiePolicyContainer .table {
+    width: 100%;
+    margin-bottom: 16px;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+.truyoConsentCookieSettings .table thead th,
+.cookiePolicyContainer .table thead th {
+    border-bottom: 2px solid #dee2e6;
+    text-align: inherit;
+}
+
+.truyoConsentCookieSettings .table th,
+.truyoConsentCookieSettings .table td,
+.cookiePolicyContainer .table th,
+.cookiePolicyContainer .table td {
+    padding: 12px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: left !important;
+}
+
+/* Cookie Settings Modal */
+.truyoConsentCookieSettings .cookieListTable,
+.cookiePolicyContainer .cookiePolicyContainer {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+.cookiePolicyContainer .cookieListTable .table thead th {
+    border: 0 !important;
+    background: #fafafa !important;
+    padding: 12px 12px 12px 24px !important;
+    font-size: 14px !important;
+}
+
+.truyoConsentCookieSettings .cookieListTable .table thead th
+ {
+    border: 0 ;
+    background: #fafafa ;
+    padding: 12px 12px 12px 24px ;
+    font-size: 14px ;
+}
+
+
+.cookiePolicyContainer .cookieListTable .table td {
+    border: 0 !important;
+    border-bottom: 1px solid #d7d7d7 !important;
+    padding: 12px 12px 12px 24px !important;
+}
+
+.truyoConsentCookieSettings .cookieListTable .table td
+ {
+    border: 0 ;
+    border-bottom: 1px solid #d7d7d7 ;
+    padding: 12px 12px 12px 24px ;
+}
+
+.cookiePolicyContainer .cookieListTable tbody tr td:first-child {
+    box-shadow: inset 5px 0 0 0 #d41b1b !important;
+}
+
+.truyoConsentCookieSettings .cookieListTable tbody tr td:first-child
+{
+    box-shadow: inset 5px 0 0 0 #d41b1b;
+}
+
+
+/* Cookie Policy Page CSS */
+.cookiePolicyContainer {
+    max-width: 750px;
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0 auto 64px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cookiePolicyContainer h5 {
+    margin-bottom: 10px;
+}
+
+.cookiePolicyContainer .topic-name {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.cookiePolicyContainer .topic-description {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.cookiePolicyContainer hr {
+    display: block;
+    height: 1px;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+}
+
+/* Switch CSS */
+/* Switch Label */
+.truyoConsentCookieSettings .switchbtn {
+    font-weight: normal;
+}
+
+.truyoConsentCookieSettings .switchbtn .switch-label {
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0 0 0 55px;
+    font-weight: bold;
+    margin:15px 0;
+}
+
+.truyoConsentCookieSettings .switch-input {
+    display: none;
+}
+
+.truyoConsentCookieSettings .switch-label:before,
+.truyoConsentCookieSettings .switch-label:after {
+    left: 0;
+    content: "";
+    position: absolute;
+    margin: 0;
+    outline: 0;
+    top: 50%;
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.truyoConsentCookieSettings .switch-label:before {
+    /* track */
+    width:45px;
+    height: 25px;
+    background-color: var(--stone);
+    border-radius: 25px;
+}
+
+.truyoConsentCookieSettings .switch-label:after {
+    /* handle  */
+    left:0;
+    width: 21px;
+    height: 21px;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    line-height: normal;
+}
+
+.truyoConsentCookieSettings .switch-label::after {
+    /* off */
+    content: 'S';
+    font-family: 'truyo-icons', serif;
+    font-size: 14px;
+    color: var(--stone);
+    border-color: var(--stone);
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label::after {
+    /* on */
+    content: 'R';
+    font-family: 'truyo-icons', serif;
+    font-size: 14px;
+    color: var(--primaryButtonColor);
+    border-color: var(--primaryButtonColor);
+}
+
+.truyoConsentCookieSettings .switch-label .toggle--on {
+    display: none;
+}
+
+.truyoConsentCookieSettings .switch-label .toggle--off {
+    display: inline-block;
+    padding-left: 0.5em;
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label:before {
+    background-color: var(--primaryButtonColor);
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label.disabled:before {
+    opacity: 0.6;
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label:after {
+    -ms-transform: translate(100%, -50%);
+    -webkit-transform: translate(100%, -50%);
+    transform: translate(100%, -50%);
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label .toggle--on {
+    display: inline-block;
+    padding-left: 0.5em;
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label .toggle--off {
+    display: none;
+}
+
+.truyoConsentCookieSettings .switch-input:checked+.switch-label.disabled::after {
+    color: var(--accent-reduced);
+    border-color: var(--accent-reduced);
+}
+
+@media only screen and (max-width: 768px) {
+    #truyo-consent-module.sticky-footer.d-flex, .truyoConsentCookieSettings .d-flex {
+        display: block !important;
+    }
+
+    .truyoConsentCookieSettings .row {
+        display:block !important;
+    }
+
+    .truyoConsentCookieSettings .col-3 {
+        max-width: 90% !important;
+    }
+
+    #truyo-consent-module.sticky-footer div {
+        margin-bottom: 10px !important;
+    }
+
+    .truyoConsentCookieSettings .modal-footer {
+        display: block !important;
+    }
+
+    .truyoConsentCookieSettings .tab-bar {
+        height: auto !important;
+    }
+
+    .truyoConsentCookieSettings .col-9 {
+        max-width: 100% !important;
+    }
+
+    .truyoConsentCookieSettings .cookieListTable .table td,
+    .cookiePolicyContainer .cookieListTable .table td {
+        overflow: scroll !important;
+    }
+
+    .truyoConsentCookieSettings .col-9 {
+        max-width: 100% !important;
+    }
+}
+#gpcDiv
+{
+    background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+	background: linear-gradient(135deg, #73a5ff, #5477f5);
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    position: fixed;
+    top: 60px;
+    right: 60px;
+    opacity: 1;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    border-radius: 2px;
+    cursor: pointer;
+    z-index: 999;
+}

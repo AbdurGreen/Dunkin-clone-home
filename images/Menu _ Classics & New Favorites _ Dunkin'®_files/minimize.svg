@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Icons / Utility Icon Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M14.7875,11.9442719 L22.4875,11.9442719 C22.9875,11.9442719 23.1375,11.3942719 22.7375,10.9942719 L20.2875,8.49427191 L24.7875,3.94427191 C25.0375,3.69427191 25.0375,3.24427191 24.7875,2.99427191 L22.9375,1.14427191 C22.6875,0.94427191 22.2875,0.94427191 21.9875,1.19427191 L17.4875,5.69427191 L14.9375,3.24427191 C14.5375,2.84427191 13.9875,2.99427191 13.9875,3.49427191 L13.9875,11.1942719 C13.9875,11.5442719 14.4375,11.9442719 14.7875,11.9442719 Z M11.1875,13.9942719 L3.4875,13.9942719 C2.9875,13.9942719 2.8375,14.5442719 3.2375,14.9442719 L5.6875,17.4442719 L1.1875,21.9942719 C0.9375,22.2442719 0.9375,22.6942719 1.1875,22.9442719 L3.0375,24.7942719 C3.2875,25.0442719 3.6875,25.0442719 3.9875,24.7942719 L8.5375,20.2442719 L11.0875,22.6942719 C11.4375,23.1442719 11.9875,22.9942719 11.9875,22.4942719 L11.9875,14.8442719 C11.9875,14.4942719 11.5375,13.9942719 11.1875,13.9942719 Z" id="path-1"></path>
+    </defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-46.000000, -1.000000)">
+            <g id="Icons-/-Utility-Icon" transform="translate(45.000000, 0.000000)">
+                <rect id="Rectangle" x="0" y="0" width="26" height="26"></rect>
+                <g id="Icons-/-z-nested-/-icon-glyphs-/-utility-/contract_alt">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="🎨-Color" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <g id="Icons-/-z-nested-/Icon-color/White" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
+                        <g transform="translate(-1.000000, -1.000000)" id="color">
+                            <rect x="0" y="0" width="28" height="28"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,214 @@
+if (!window.nfchatuirequest) {
+    window.addEventListener('nfchatui_aura', handleAuraRequest);
+    window.addEventListener('nfchatui_lwc', handleLwcRequest);
+    window.nfchatuirequest = true;
+}
+
+function handleAuraRequest(e) {
+    const evt = e;
+    let preChatform = document.getElementById('nfchatuiprechatcontainer');
+    switch (evt.detail.type) {
+        case 'loadPrechat':
+            preChatform.classList.remove('slds-hide');
+            preChatform.classList.add('chat-docker');
+            handlePrechat(evt);
+            break;
+        case 'restorePrechat':
+            preChatform.classList.remove('slds-hide');
+            preChatform.classList.add('chat-docker');
+            break;
+        default: //
+            break;
+    }
+}
+
+function handleLwcRequest(e) {
+    let preChatform = document.getElementById('nfchatuiprechatcontainer');
+    const evt = e;
+    switch (evt.detail.type) {
+        case 'closePre':
+            handleUI('closePre');
+            preChatform.innerHTML = '';
+            preChatform.classList.remove('chat-docker');
+            break;
+        case 'prechatopen':
+            dispatchEventToBot('nfchatui_uiaction', 'prechatopen', evt.detail.data);
+            preChatform.classList.add('slds-hide');
+            preChatform.classList.add('chat-docker');
+            break;
+        case 'prechatdown':
+            dispatchEventToBot('nfchatui_uiaction', 'prechatdown');
+            preChatform.classList.add('slds-hide');
+            break;
+        default: //
+            break;
+    }
+}
+
+function handlePrechat(e) {
+    createCmp('nfchatui:PrechatFormContainer', {
+        "prechatForm": e.detail.data.prechatForm,
+        "initParams": e.detail.data.initParams
+    }, 'nfchatuiprechatcontainer', function (cmp) {
+        console.log('Initializing pre-chat form...');
+    });
+}
+
+function loadChatBot(commurl, botname, paramObject, callback) {
+    let parameterMap = {
+        userAgent: getUserAgent(),
+        language: getLanguage(),
+        resolution: getResolution(),
+        Bot: botname,
+        commurl: commurl
+    };
+
+    let clientData = {};
+    if (paramObject && paramObject !== '') {
+        clientData = JSON.parse(paramObject);
+        for (let attr in clientData) {
+            parameterMap[attr] = clientData[attr];
+        }
+    }
+
+    if (commurl !== '' && botname !== '') {
+
+        //============================ Create a div for rendering nfchatuicontainer =======================//
+        var chatBotDiv = document.getElementById('nfchatuicontainer');
+        if (chatBotDiv) {
+            //Delete the element
+            chatBotDiv.parentNode.removeChild(chatBotDiv);
+        }
+        chatBotDiv = document.createElement('div');
+        chatBotDiv.setAttribute('id', 'nfchatuicontainer');
+
+        //============================ Create a div for rendering the Pre-chat form =======================//
+        var preChatDiv = document.getElementById('nfchatuiprechatcontainer');
+        if (preChatDiv) {
+            //Delete the element
+            preChatDiv.parentNode.removeChild(preChatDiv);
+        }
+        preChatDiv = document.createElement('div');
+        preChatDiv.setAttribute('id', 'nfchatuiprechatcontainer');
+        chatBotDiv.appendChild(preChatDiv);
+        //===================================== END Pre-chat ==============================================//
+
+        //Append it to body
+        var docBody = document.getElementsByTagName('body');
+        docBody[0].appendChild(chatBotDiv);
+        //==================================== END nfchatuicontainer =====================================//
+
+        try {
+            $Lightning.use("nfchatui:chatApp",                                 // name of the Lightning app
+                function () {                                                   // Callback once framework and app loaded
+                    $Lightning.createComponent(
+                        "nfchatui:chatWindow",                                 // top-level component of your app
+                        { 'nfchatuidetails': JSON.stringify(parameterMap) },       // attributes to set on the component when created
+                        "nfchatuicontainer",                                    // the DOM location to insert the component
+                        function (cmp) {
+                            console.log('Chat bot loaded');                      // callback when component is created and active on the page
+                            if (typeof callback == 'function') {
+                                callback();
+                            }
+                        }
+                    );
+                },
+                commurl.substr(0, commurl.length - 1)                            // Community endpoint
+            );
+        }
+        catch (ex) {
+            console.log('Exception occured while loading the bot.');
+            console.log(ex);
+        }
+    }
+    else {
+        console.log('Something is not right. It seems input paramteres are not valid.');
+        console.log('\t Community URL: \t' + commurl);
+        console.log('\t Bot name: \t' + botname);
+    }
+}
+
+function createCmp(name, params, place, callback) {
+    $Lightning.createComponent(
+        name,                                 // top-level component of your app
+        params,                                           // attributes to set on the component when created
+        place,                                    // the DOM location to insert the component
+        function (cmp) {
+            if (typeof callback == 'function') {
+                callback(cmp);                  // callback when component is created and active on the page
+            }
+        }
+    );
+}
+
+function dispatchEventToBot(eventName, params, message) {
+    if (eventName && eventName !== '') {
+        let parameters = {
+            params: '',
+            message: ''
+        };
+        parameters.params = params ? params : '';
+        parameters.message = message ? message : '';
+
+        let tar = document.getElementsByTagName('nfchatui-chat-window');
+        if (tar) {
+            let p = tar[0].dispatchEvent(new CustomEvent(eventName, { detail: JSON.stringify(parameters) }));
+            return true;
+        }
+    }
+    console.log('Event name cannot be blank, hence it cannot be fired.');
+    return false;
+}
+
+function handleUI(type) {
+    if (type && type !== '') {
+        dispatchEventToBot('nfchatui_uiaction', type + 'chat', '');
+    }
+}
+
+function requestAuraAction(type, data) {
+    let myExternalEvent;
+    if (window.$A &&
+        (myExternalEvent = window.$A.get("e.nfchatui:chatEvent"))) {
+        myExternalEvent.setParams({
+            type,
+            payload: data
+        });
+        myExternalEvent.fire();
+    }
+}
+
+/**
+* Class for capturing field details
+* Name: CustomDetail
+*/
+function CustomDetail() {
+    var newObj = {
+        label: '',
+        value: '',
+        transcriptFields: []
+    };
+    return newObj;
+}
+
+function CustomDetail(key, value, fields, show) {
+    var ob = {};
+    ob.label = key;
+    ob.value = value;
+    ob.transcriptFields = fields;
+    return ob;
+}
+
+function getResolution() {
+    return window.outerWidth + 'x' + window.outerHeight;
+}
+
+function getUserAgent() {
+    return navigator.userAgent;
+}
+
+function getLanguage() {
+    return navigator.language;
+}
+
+postFileLoad();

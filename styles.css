@@ -639,6 +639,7 @@ html{
         gap:1.50rem;
         flex-grow: 1;
         padding: 3rem 1rem;
+        background-color: white;
     }
 }
 

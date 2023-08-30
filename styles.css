@@ -5,7 +5,9 @@
 html{
     background-color: white;
 }
-
+body{
+    background-color: white;
+}
 :root{
    --dunkin-pink:rgb(198, 54, 99);
    --dunkin-brown:rgb(62, 52, 47);

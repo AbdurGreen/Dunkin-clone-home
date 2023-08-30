@@ -3,7 +3,11 @@
     box-sizing: content-box;
 }
 html{
-    background-color: burlywood;
+    background-color: white;
+    overflow-x: hidden;
+}
+body{
+    background-color: white;
 }
 
 :root{
@@ -290,7 +294,7 @@ html{
 
 .upping-the-pumpkin{
     overflow: hidden;
-    background-image: url('/images/Pumpkin_menu_desktop.png');
+    background-image: url('images/https://imgur.com/dFMgH4Y');
     background-repeat: no-repeat;
     background-position: center; 
     background-size: cover;
@@ -636,7 +640,7 @@ html{
         flex-direction: column;
         align-items: center;
         gap:1.50rem;
-        background-color: brown;
+        background-color: white;
         flex-grow: 1;
         padding: 3rem 1rem;
     }
@@ -1008,7 +1012,7 @@ html{
     width:100%;
     display:flex;
     justify-content: space-around;
-    padding: 3rem 0;
+    padding: 2rem 0;
     border-bottom:1px solid var(--grey);
 }
 
